@@ -1,8 +1,6 @@
 package seniorproject.arboretumapp;
 
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -17,10 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TabHost;
 import android.widget.TextView;
 
-import fragments.FavoritesFragment;
+import fragments.MapFragment;
 import fragments.HomeFragment;
 import fragments.InfoFragment;
 import fragments.PlantDetailsFragment;
@@ -76,12 +73,16 @@ public class MainActivity extends AppCompatActivity {
         TextView tabHeader4 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
         tabHeader4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_info, 0, 0);
 
+        TextView tabHeader5 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
+        tabHeader5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_info, 0, 0);
+
 
         tabLayout.getTabAt(0).setCustomView(tabHeader0);
         tabLayout.getTabAt(1).setCustomView(tabHeader1);
         tabLayout.getTabAt(2).setCustomView(tabHeader2);
         tabLayout.getTabAt(3).setCustomView(tabHeader3);
         tabLayout.getTabAt(4).setCustomView(tabHeader4);
+        tabLayout.getTabAt(5).setCustomView(tabHeader5);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -183,13 +184,16 @@ public class MainActivity extends AppCompatActivity {
             if (position == 4)
                 return new InfoFragment();
 
+            if (position == 5)
+                return new MapFragment();
+
             return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 5;
+            return 6;
         }
 
         @Override
@@ -205,6 +209,8 @@ public class MainActivity extends AppCompatActivity {
                     return "SECTION 4";
                 case 4:
                     return "SECTION 5";
+                case 5:
+                    return "SECTION 6";
             }
             return null;
         }
