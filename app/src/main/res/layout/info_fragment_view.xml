@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:paddingTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/uiuc_logo"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:paddingTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="About the Arboretum"
+        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="The Arboretum is ... Special thanks to ... And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info..."
+        android:id="@+id/textView5"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
