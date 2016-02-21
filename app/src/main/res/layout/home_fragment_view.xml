@@ -3,14 +3,17 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="319dp"
+        android:id="@+id/calendarView" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginTop="20dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Announcements"
-        android:id="@+id/textView2"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Date"
+        android:id="@+id/textView8"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -19,13 +22,42 @@
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="The Arboretum has this annoucement! The Arboretum has this annoucement! The Arboretum has this annoucement! The Arboretum has this annoucement! "
+        android:text="Announcement 1"
         android:id="@+id/textView3"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:gravity="left" />
 
-    <CalendarView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/calendarView"
-        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Announcement 2"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:gravity="left" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Event 1"
+        android:id="@+id/textView6"
+        android:layout_gravity="center_horizontal"
+        android:gravity="left" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Event 2"
+        android:id="@+id/textView7"
+        android:layout_gravity="center_horizontal"
+        android:gravity="left" />
+
 </LinearLayout>
