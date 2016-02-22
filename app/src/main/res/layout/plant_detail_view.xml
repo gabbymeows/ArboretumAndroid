@@ -235,8 +235,16 @@ android:layout_width="match_parent" android:layout_height="wrap_content">
         android:clickable="false" />
 
 
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:layout_row="17"
+        android:layout_column="0" />
 
 </GridLayout>
 
 
 </ScrollView>
+

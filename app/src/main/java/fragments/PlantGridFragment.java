@@ -1,5 +1,6 @@
 package fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -9,7 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,10 +72,20 @@ public class PlantGridFragment extends Fragment {
 
 
             //todo figure out how to show the plant details fragment from here
-
-//            final FragmentTransaction ft = getFragmentManager().beginTransaction();
-//            ft.replace(R.id.plantgridview, new PlantDetailsFragment(), "NewFragmentTag");
-//            ft.commit();
+            // THE FOLLOWING CODE IS BULLSHIT.... MIGHT BE USEFUL.... DUNNO....
+            final Dialog dialog = new Dialog(parent.getContext());
+            dialog.setContentView(R.layout.plant_detail_view);
+            dialog.setTitle("Title...");
+            Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+            // if button is clicked, close the custom dialog
+            dialogButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+            // END OF BULLSHIT CODEs
 
             //getFragmentManager().findFragmentById(R.id.fra)
 
