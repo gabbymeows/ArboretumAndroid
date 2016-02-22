@@ -30,4 +30,6 @@
         android:text="The Arboretum is ... Special thanks to ... And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info...And more info..."
         android:id="@+id/textView5"
         android:layout_gravity="center_horizontal" />
+
+
 </LinearLayout>
