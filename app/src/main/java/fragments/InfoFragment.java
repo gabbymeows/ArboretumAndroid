@@ -27,7 +27,6 @@ public class InfoFragment extends Fragment {
     {
         View rootView = inflater.inflate(R.layout.info_fragment_view, container, false);
 
-
         return rootView;
     }
 }

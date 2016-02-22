@@ -17,6 +17,9 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import fragments.MapFragment;
 import fragments.HomeFragment;
 import fragments.InfoFragment;
@@ -189,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
             return PlaceholderFragment.newInstance(position + 1);
         }
+
 
         @Override
         public int getCount() {
