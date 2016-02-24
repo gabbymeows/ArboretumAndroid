@@ -23,6 +23,7 @@ import java.util.Calendar;
 import fragments.MapFragment;
 import fragments.HomeFragment;
 import fragments.InfoFragment;
+import fragments.FavoritesFragment;
 import fragments.PlantDetailsFragment;
 import fragments.PlantGridFragment;
 
@@ -76,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         TextView tabHeader4 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
         tabHeader4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_info, 0, 0);
 
-        TextView tabHeader5 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
-        tabHeader5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_info, 0, 0);
+        //TextView tabHeader5 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
+        //tabHeader5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_info, 0, 0);
 
 
         tabLayout.getTabAt(0).setCustomView(tabHeader0);
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setCustomView(tabHeader2);
         tabLayout.getTabAt(3).setCustomView(tabHeader3);
         tabLayout.getTabAt(4).setCustomView(tabHeader4);
-        tabLayout.getTabAt(5).setCustomView(tabHeader5);
+        //tabLayout.getTabAt(5).setCustomView(tabHeader5);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -179,16 +180,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (position == 2)
-                return new PlantDetailsFragment();
+                return new MapFragment();
 
-//            if (position == 3)
-//                return new FavoritesFragment();
+            if (position == 3)
+                return new FavoritesFragment();
 
             if (position == 4)
                 return new InfoFragment();
 
-            if (position == 5)
-                return new MapFragment();
+            //if (position == 5)
+                //return new PlantDetailsFragment();
 
             return PlaceholderFragment.newInstance(position + 1);
         }
@@ -197,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 6;
+            return 5;
         }
 
         @Override
@@ -213,8 +214,8 @@ public class MainActivity extends AppCompatActivity {
                     return "SECTION 4";
                 case 4:
                     return "SECTION 5";
-                case 5:
-                    return "SECTION 6";
+                //case 5:
+                //    return "SECTION 6";
             }
             return null;
         }
