@@ -36,7 +36,7 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position){
-        return position;
+        return listStorage.get(position);
     }
 
     @Override
@@ -65,6 +65,15 @@ public class GridViewAdapter extends BaseAdapter {
         listViewHolder.imageInListView.setImageResource(imageResourceId);
 
         return convertView;
+    }
+
+    public int getImageIdFromPosition(int position){
+        return this.context.getResources().getIdentifier(listStorage.get(position).getImageResource(), "drawable", this.context.getPackageName());
+    }
+
+    public String getPlantNameFromPosition(int position){
+        return listStorage.get(position).getContent();
+
     }
 
     static class ViewHolder{

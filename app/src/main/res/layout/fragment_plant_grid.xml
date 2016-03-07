@@ -1,17 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-<GridView
-    android:id="@+id/plantgridview"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnWidth="80dp"
-    android:numColumns="auto_fit"
-    android:verticalSpacing="8dp"
-    android:horizontalSpacing="8dp"
-    android:padding="16dp"
-    android:stretchMode="columnWidth"
-    android:gravity="center"/>
-</FrameLayout>
+    android:weightSum="1"
+    android:nestedScrollingEnabled="true">
+
+
+    <GridView
+        android:id="@+id/plantgridview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:columnWidth="80dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="8dp"
+        android:horizontalSpacing="8dp"
+        android:padding="16dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout"
+        android:layout_gravity="fill|bottom"
+        android:layout_weight="1"
+        android:paddingBottom="60dp">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Closest"
+                android:layout_marginLeft="81dp"
+                android:id="@+id/textView10"
+                android:layout_gravity="right|bottom" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Favorites"
+                android:id="@+id/textView9"
+                android:layout_marginLeft="114dp"
+                android:layout_gravity="right|bottom" />
+        </LinearLayout>
+        <RadioGroup
+
+            android:layout_gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton2"
+                android:layout_marginLeft="90dp"
+                android:singleLine="true" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton"
+                android:layout_marginLeft="132dp"
+                android:singleLine="true" />
+
+
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
+
+
+
+

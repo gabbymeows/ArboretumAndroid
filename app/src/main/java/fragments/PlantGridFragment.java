@@ -70,20 +70,24 @@ public class PlantGridFragment extends Fragment {
     private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            GridViewAdapter workingAdapter = (GridViewAdapter)parent.getAdapter();
+            GridTile tileClicked = ((GridTile)((parent.getAdapter()).getItem(position)));
+            String plantname = workingAdapter.getPlantNameFromPosition(position);
 
             //todo figure out how to show the plant details fragment from here
             // THE FOLLOWING CODE IS BULLSHIT.... MIGHT BE USEFUL.... DUNNO....
+
             final Dialog dialog = new Dialog(parent.getContext());
             dialog.setContentView(R.layout.plant_detail_view);
-            dialog.setTitle("Title...");
-            Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-            // if button is clicked, close the custom dialog
-            dialogButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
+            dialog.setTitle(plantname);
+
+
+            ImageView plantImage = (ImageView) dialog.findViewById(R.id.largePlantImage);
+
+
+            int imageId = workingAdapter.getImageIdFromPosition(position);
+            plantImage.setImageResource(imageId);
+
             dialog.show();
             // END OF BULLSHIT CODEs
 
@@ -91,5 +95,6 @@ public class PlantGridFragment extends Fragment {
 
         }
     };
+
 
 }

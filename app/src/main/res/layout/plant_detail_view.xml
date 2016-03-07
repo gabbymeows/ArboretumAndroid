@@ -1,249 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent" android:layout_height="wrap_content">
-
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/largeIcon"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_margin="5dp" />
 
-    <TextView
-        android:id="@+id/nameTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Plant Name"
-        android:textSize="12sp"
-        android:textStyle="normal"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="20dp" />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="173dp"
-        android:layout_height="wrap_content"
-        android:text="First Last"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="35dp"
-        android:singleLine="false"
-        android:layout_weight="0.90" />
-
-    <TextView
-        android:id="@+id/companyTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Company:"
-        android:textSize="12sp"
-        android:textStyle="normal"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="55dp" />
-
-    <TextView
-        android:id="@+id/company"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Company"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:singleLine="false"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="70dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home:"
-        android:id="@+id/homeTitle"
-        android:layout_row="1"
-        android:layout_column="0"
-        android:textSize="12sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="555-555-5555"
-        android:id="@+id/home"
-        android:layout_row="2"
-        android:layout_column="0"
-        android:textSize="14sp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="15dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mobile:"
-        android:id="@+id/mobileTitle"
-        android:layout_row="3"
-        android:layout_column="0"
-        android:textSize="12sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="555-555-5555"
-        android:id="@+id/mobile"
-        android:layout_row="4"
-        android:layout_column="0"
-        android:textSize="14sp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="15dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Work:"
-        android:id="@+id/workTitle"
-        android:layout_row="5"
-        android:layout_column="0"
-        android:textSize="12sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="555-555-5555"
-        android:id="@+id/work"
-        android:layout_row="6"
-        android:layout_column="0"
-        android:textSize="14sp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="15dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address:"
-        android:id="@+id/addressTitle"
-        android:layout_row="7"
-        android:layout_column="0"
-        android:textSize="12sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1234 Street"
-        android:id="@+id/street"
-        android:layout_row="8"
-        android:layout_column="0"
-        android:textSize="14sp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chicago, IL 60004"
-        android:id="@+id/cityStateZip"
-        android:layout_row="9"
-        android:layout_column="0"
-        android:textSize="14sp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="15dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Birthdate:"
-        android:id="@+id/birthdateTitle"
-        android:layout_row="10"
-        android:layout_column="0"
-        android:textSize="12sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dec 4, 1990"
-        android:id="@+id/birthdate"
-        android:layout_row="11"
-        android:layout_column="0"
-        android:textSize="14sp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="15dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email:"
-        android:id="@+id/emailTitle"
-        android:layout_row="12"
-        android:layout_column="0"
-        android:textSize="12sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="something@something.com"
-        android:id="@+id/email"
-        android:layout_row="13"
-        android:layout_column="0"
-        android:textSize="14sp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Website:"
-        android:id="@+id/websiteTitle"
-        android:layout_row="14"
-        android:layout_column="0"
-        android:textSize="12sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="www.something.com"
-        android:id="@+id/website"
-        android:layout_row="15"
-        android:layout_column="0"
-        android:textSize="14sp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="15dp"/>
+        <ImageView
+            android:id="@+id/largePlantImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="5dp"
+            android:scaleType="fitXY"/>
 
 
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Favorite"
-        android:layout_row="16"
-        android:id="@+id/favorite"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_column="0"
-        android:clickable="false" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home:"
+            android:id="@+id/homeTitle"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:textSize="12sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="555-555-5555"
+            android:id="@+id/home"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:textSize="14sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobile:"
+            android:id="@+id/mobileTitle"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:textSize="12sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="555-555-5555"
+            android:id="@+id/mobile"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:textSize="14sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Work:"
+            android:id="@+id/workTitle"
+            android:layout_row="5"
+            android:layout_column="0"
+            android:textSize="12sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="555-555-5555"
+            android:id="@+id/work"
+            android:layout_row="6"
+            android:layout_column="0"
+            android:textSize="14sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address:"
+            android:id="@+id/addressTitle"
+            android:layout_row="7"
+            android:layout_column="0"
+            android:textSize="12sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1234 Street"
+            android:id="@+id/street"
+            android:layout_row="8"
+            android:layout_column="0"
+            android:textSize="14sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chicago, IL 60004"
+            android:id="@+id/cityStateZip"
+            android:layout_row="9"
+            android:layout_column="0"
+            android:textSize="14sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Birthdate:"
+            android:id="@+id/birthdateTitle"
+            android:layout_row="10"
+            android:layout_column="0"
+            android:textSize="12sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dec 4, 1990"
+            android:id="@+id/birthdate"
+            android:layout_row="11"
+            android:layout_column="0"
+            android:textSize="14sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email:"
+            android:id="@+id/emailTitle"
+            android:layout_row="12"
+            android:layout_column="0"
+            android:textSize="12sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="something@something.com"
+            android:id="@+id/email"
+            android:layout_row="13"
+            android:layout_column="0"
+            android:textSize="14sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Website:"
+            android:id="@+id/websiteTitle"
+            android:layout_row="14"
+            android:layout_column="0"
+            android:textSize="12sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="www.something.com"
+            android:id="@+id/website"
+            android:layout_row="15"
+            android:layout_column="0"
+            android:textSize="14sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"/>
 
 
-    <Button
-        android:id="@+id/dialogButtonOK"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:layout_row="17"
-        android:layout_column="0" />
 
-</GridLayout>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favorite"
+            android:layout_row="16"
+            android:id="@+id/favorite"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_column="0"
+            android:clickable="false" />
+
+
+        <Button
+            android:id="@+id/dialogButtonOK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:layout_row="17"
+            android:layout_column="0" />
+
+    </GridLayout>
 
 
 </ScrollView>
