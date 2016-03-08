@@ -5,6 +5,9 @@ package adapters;
  */
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +15,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.net.URL;
 import java.util.List;
 
 import models.GridTile;
+import plantsAPI.DownloadImageTask;
 import seniorproject.arboretumapp.R;
 
 public class GridViewAdapter extends BaseAdapter {
@@ -59,10 +64,14 @@ public class GridViewAdapter extends BaseAdapter {
         }
 
         listViewHolder.textInListView.setText(listStorage.get(position).getContent());
-        int imageResourceId = this.context.getResources().getIdentifier(listStorage.get(position).getImageResource(), "drawable", this.context.getPackageName());
+
+        //Code no longer needed, might be helpful refrence though
+        //int imageResourceId = this.context.getResources().getIdentifier(listStorage.get(position).getImageResource(), "drawable", this.context.getPackageName());
         //int imageResourceId = R.drawable.pine_grid_tile_image
 
-        listViewHolder.imageInListView.setImageResource(imageResourceId);
+        //listViewHolder.imageInListView.setImageResource(imageResourceId);
+        listViewHolder.imageInListView.setImageBitmap(null);
+        new DownloadImageTask(listViewHolder.imageInListView).execute(listStorage.get(position).getImageResource());
 
         return convertView;
     }
@@ -70,6 +79,8 @@ public class GridViewAdapter extends BaseAdapter {
     public int getImageIdFromPosition(int position){
         return this.context.getResources().getIdentifier(listStorage.get(position).getImageResource(), "drawable", this.context.getPackageName());
     }
+
+
 
     public String getPlantNameFromPosition(int position){
         return listStorage.get(position).getContent();
