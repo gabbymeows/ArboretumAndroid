@@ -13,30 +13,33 @@
         android:layout_gravity="center_horizontal" />
 
     <TextView
-        android:paddingTop="8dp"
-        android:layout_width="423dp"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="    The University of Illinois Arboretum"
-        android:id="@+id/textView4" />
+        android:id="@+id/textView4"
+        android:layout_gravity="center" />
 
     <TextView
-        android:layout_width="372dp"
-        android:layout_height="168dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="The UI Arboretum is a living laboratory, including plant collections and facilities that support the teaching, research, and public service programs of several units throughout campus. Located on the campus of the University of Illinois, it was developed in the late 1980s to early 1990s, and is currently 57 acres."
         android:id="@+id/textView11"
         android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
         android:layout_marginTop="9dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Special thanks to the NCSA and the University of Illinois for their support. Photos taken by Dr. Gary Kling, Mr. Chris Lindsey, Mr. Malcolm X. Please do not reproduce. "
+        android:text="Special thanks to the NCSA and the University of Illinois for their support."
         android:id="@+id/textView5"
         android:layout_marginLeft="9dp"
-        android:layout_marginTop="50dp" />
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="9dp" />
 
 
 </LinearLayout>

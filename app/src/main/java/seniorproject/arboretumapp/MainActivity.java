@@ -181,11 +181,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (position == 2)
                 return new MapFragment();
+//
+//            if (position == 3)
+//                return new FavoritesFragment();
 
             if (position == 3)
-                return new FavoritesFragment();
-
-            if (position == 4)
                 return new InfoFragment();
 
             //if (position == 5)
