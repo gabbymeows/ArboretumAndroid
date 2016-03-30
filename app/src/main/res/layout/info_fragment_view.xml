@@ -17,7 +17,7 @@
         android:layout_width="423dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="    The University of Illinois Arboretum"
+        android:text=" The University of Illinois Arboretum"
         android:id="@+id/textView4" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="The UI Arboretum is a living laboratory, including plant collections and facilities that support the teaching, research, and public service programs of several units throughout campus. Located on the campus of the University of Illinois, it was developed in the late 1980s to early 1990s, and is currently 57 acres."
         android:id="@+id/textView11"
-        android:layout_marginLeft="9dp"
+        android:layout_marginLeft="7dp"
         android:layout_marginTop="9dp" />
 
     <TextView
