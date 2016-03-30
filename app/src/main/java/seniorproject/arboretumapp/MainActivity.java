@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setCustomView(tabHeader0);
         tabLayout.getTabAt(1).setCustomView(tabHeader1);
         tabLayout.getTabAt(2).setCustomView(tabHeader2);
-        tabLayout.getTabAt(3).setCustomView(tabHeader3);
-        tabLayout.getTabAt(4).setCustomView(tabHeader4);
+        tabLayout.getTabAt(3).setCustomView(tabHeader4);
+        //tabLayout.getTabAt(4).setCustomView(tabHeader3);
         //tabLayout.getTabAt(5).setCustomView(tabHeader5);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 5;
+            return 4;
         }
 
         @Override
@@ -212,8 +212,8 @@ public class MainActivity extends AppCompatActivity {
                     return "SECTION 3";
                 case 3:
                     return "SECTION 4";
-                case 4:
-                    return "SECTION 5";
+//                case 4:
+//                    return "SECTION 5";
                 //case 5:
                 //    return "SECTION 6";
             }

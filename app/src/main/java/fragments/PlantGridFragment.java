@@ -26,6 +26,12 @@ import plantsAPI.*;
 public class PlantGridFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "plant_grid_view";
 
+    @Override
+    public void onSaveInstanceState(final Bundle state){
+        super.onSaveInstanceState(state);
+
+    }
+
     public PlantGridFragment() {
     }
 
