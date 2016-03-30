@@ -15,6 +15,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
+
 import java.net.URL;
 import java.util.List;
 
@@ -27,6 +31,7 @@ public class GridViewAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private List<GridTile> listStorage;
     private Context context;
+    private JSONObject names;
 
     public GridViewAdapter(Context context, List<GridTile> customizedListView){
         this.context = context;
@@ -71,8 +76,8 @@ public class GridViewAdapter extends BaseAdapter {
 
         //listViewHolder.imageInListView.setImageResource(imageResourceId);
         listViewHolder.imageInListView.setImageBitmap(null);
-        new DownloadImageTask(listViewHolder.imageInListView).execute(listStorage.get(position).getImageResource());
-
+        //new DownloadImageTask(listViewHolder.imageInListView).execute(listStorage.get(position).getImageResource());
+        Picasso.with(context).load(listStorage.get(position).getImageResource()).into(listViewHolder.imageInListView);
         return convertView;
     }
 

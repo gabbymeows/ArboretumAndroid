@@ -34,8 +34,7 @@ public class HomeFragment extends Fragment {
 
         WebView webView = (WebView) rootView.findViewById(R.id.webViewCalendar);
         webView.getSettings().setJavaScriptEnabled(true);
-        String iframe = "<iframe src=\"https://calendar.google.com/calendar/embed?src=arborapp16%40gmail.com&ctz=America/Chicago\" style=\"border: 0\" width=\"340\" height=\"340\" frameborder=\"0\" scrolling=\"no\"></iframe>";
-        String iframe2 = "<iframe src=\"https://calendar.google.com/calendar/embed?title=Events&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=arborapp16%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FChicago\" style=\"border-width:0\" width=\"350\" height=\"319\" frameborder=\"0\" scrolling=\"no\"></iframe>";
+        String iframe = "<iframe src=\"https://calendar.google.com/calendar/embed?src=arborapp16%40gmail.com&ctz=America/Chicago\" style=\"border: 0\" width=\"340\" height=\"345\" frameborder=\"0\" scrolling=\"no\"></iframe>";
         webView.loadData(iframe, "text/html", "utf-8");
 
         //String currentDateTimeString = DateFormat.getDateTimeInstance().format(new SimpleDateFormat("dd/ MM/ yyyy"));
