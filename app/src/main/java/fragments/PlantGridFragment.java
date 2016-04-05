@@ -3,6 +3,7 @@ package fragments;
 import android.app.Dialog;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,13 @@ import android.widget.ImageView;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import adapters.GridViewAdapter;
 import models.GridTile;
+import models.Plant;
 import seniorproject.arboretumapp.R;
 import plantsAPI.*;
 
@@ -25,6 +29,7 @@ import plantsAPI.*;
  */
 public class PlantGridFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "plant_grid_view";
+    protected HashMap<String, Plant> plantsMap;
 
     @Override
     public void onSaveInstanceState(final Bundle state){
@@ -55,6 +60,11 @@ public class PlantGridFragment extends Fragment {
 
             for(int i = 0; i < names.length(); i++){
 
+                //Log.d("plant_tag", names.names().get(i).toString());
+                String plantCodeName = names.names().get(i).toString();
+                if (plantsMap.get(plantCodeName) != null)
+                    plantsMap.put(plantCodeName, null);
+
                 JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(names.names().get(i).toString()).get());
                 StringBuffer imageURL = null;
                 if(plantInfo.getJSONObject("habit").getJSONArray("images").length() > 0){
@@ -74,7 +84,6 @@ public class PlantGridFragment extends Fragment {
                 else{
                     continue;
                 }
-                System.out.println();
 
                 //TODO write a function to go from code to real common name
                 tiles.add(new GridTile(names.getJSONObject(names.names().get(i).toString()).get("com_name").toString(), imageURL.toString()));

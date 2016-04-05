@@ -23,6 +23,12 @@ public class InfoFragment extends Fragment {
 
     }
 
+    @Override
+    public void onSaveInstanceState(final Bundle state){
+        super.onSaveInstanceState(state);
+
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.info_fragment_view, container, false);
