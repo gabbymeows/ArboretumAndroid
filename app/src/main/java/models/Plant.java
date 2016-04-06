@@ -34,13 +34,13 @@ public class Plant {
         this.code = code;
         this.coords = new ArrayList<Pair<Float,Float>>();
         this.addNewLocation(coords);
-        this.thumbnail = null;
+        this.thumbnail = "";
     }
 
     public Plant(String code, JSONArray coords){
         try {
             this.code = code;
-            this.thumbnail = null;
+            this.thumbnail = "";
             this.coords = new ArrayList<Pair<Float,Float>>();
             for (int i = 0; i < coords.length(); i++) {
                 this.addNewLocation(coords.get(i).toString());
@@ -78,6 +78,7 @@ public class Plant {
             json.put("com_name", this.com_name);
             json.put("fam_name", this.fam_name);
             json.put("sci_name", this.sci_name);
+            json.put("thumbnail", this.thumbnail);
 
             JSONObject fruits = new JSONObject();
             JSONObject leaves = new JSONObject();
@@ -166,6 +167,7 @@ public class Plant {
             habit.put("hardiness", this.habit.getHardiness());
             habit.put("habitat", this.habit.getHabitat());
             habit.put("habit", this.habit.getHabit());
+            habit.put("description", this.habit.getDescription());
 
             json.put("fruits", fruits);
             json.put("leaves", leaves);
@@ -231,7 +233,7 @@ public class Plant {
             ArrayList<String> images = new ArrayList<String>();
             for (int i = 0; i < json.getJSONArray("images").length(); i++) {
                 String image = json.getJSONArray("images").get(i).toString();
-                if(this.thumbnail == null){
+                if(this.thumbnail == null|| this.thumbnail.equals("")){
                     this.thumbnail = image;
                 }
                 images.add(image);
@@ -246,7 +248,7 @@ public class Plant {
             ArrayList<String> images = new ArrayList<String>();
             for (int i = 0; i < json.getJSONArray("images").length(); i++) {
                 String image = json.getJSONArray("images").get(i).toString();
-                if(this.thumbnail == null){
+                if(this.thumbnail == null|| this.thumbnail.equals("")){
                     this.thumbnail = image;
                 }
                 images.add(image);
@@ -261,7 +263,7 @@ public class Plant {
             ArrayList<String> images = new ArrayList<String>();
             for (int i = 0; i < json.getJSONArray("images").length(); i++) {
                 String image = json.getJSONArray("images").get(i).toString();
-                if(this.thumbnail == null){
+                if(this.thumbnail == null|| this.thumbnail.equals("")){
                     this.thumbnail = image;
                 }
                 images.add(image);
@@ -276,7 +278,7 @@ public class Plant {
             ArrayList<String> images = new ArrayList<String>();
             for (int i = 0; i < json.getJSONArray("images").length(); i++) {
                 String image = json.getJSONArray("images").get(i).toString();
-                if(this.thumbnail == null){
+                if(this.thumbnail == null|| this.thumbnail.equals("")){
                     this.thumbnail = image;
                 }
                 images.add(image);
@@ -291,7 +293,7 @@ public class Plant {
             ArrayList<String> images = new ArrayList<String>();
             for (int i = 0; i < json.getJSONArray("images").length(); i++) {
                 String image = json.getJSONArray("images").get(i).toString();
-                if(this.thumbnail == null){
+                if(this.thumbnail == null|| this.thumbnail.equals("")){
                     this.thumbnail = image;
                 }
                 images.add(image);
@@ -306,7 +308,7 @@ public class Plant {
             ArrayList<String> images = new ArrayList<String>();
             for (int i = 0; i < json.getJSONArray("images").length(); i++) {
                 String image = json.getJSONArray("images").get(i).toString();
-                if(this.thumbnail == null){
+                if(this.thumbnail == null|| this.thumbnail.equals("")){
                     this.thumbnail = image;
                 }
                 images.add(image);
@@ -321,7 +323,7 @@ public class Plant {
             ArrayList<String> images = new ArrayList<String>();
             for (int i = 0; i < json.getJSONArray("images").length(); i++) {
                 String image = json.getJSONArray("images").get(i).toString();
-                if(this.thumbnail == null){
+                if(this.thumbnail == null|| this.thumbnail.equals("")){
                     this.thumbnail = image;
                 }
                 images.add(image);
@@ -336,7 +338,7 @@ public class Plant {
             ArrayList<String> images = new ArrayList<String>();
             for (int i = 0; i < json.getJSONArray("images").length(); i++) {
                 String image = json.getJSONArray("images").get(i).toString();
-                if(this.thumbnail == null){
+                if(this.thumbnail == null || this.thumbnail.equals("")){
                     this.thumbnail = image;
                 }
                 images.add(image);
@@ -380,5 +382,13 @@ public class Plant {
             e.printStackTrace();
 
         }
+    }
+
+    public String getThumbnail() {
+        return this.thumbnail;
+    }
+
+    public String getSciName() {
+        return this.sci_name;
     }
 }
