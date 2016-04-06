@@ -20,9 +20,15 @@ import seniorproject.arboretumapp.R;
 /**
  * Created by Gabby on 2/3/2016.
  */
-public class PlantDetailsFragment extends Fragment {
+public class PlantDetailsFragment extends PlantGridFragment{
 
     public PlantDetailsFragment() {
+    }
+
+    @Override
+    public void onSaveInstanceState(final Bundle state){
+        super.onSaveInstanceState(state);
+
     }
 
     @Override

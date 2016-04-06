@@ -25,6 +25,12 @@ public class FavoritesFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(final Bundle state){
+        super.onSaveInstanceState(state);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.favorites_view, container, false);

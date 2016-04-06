@@ -21,6 +21,11 @@ public class MapFragment extends Fragment {
     MapView mapView;
     GoogleMap map;
 
+    @Override
+    public void onSaveInstanceState(final Bundle state){
+        super.onSaveInstanceState(state);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
