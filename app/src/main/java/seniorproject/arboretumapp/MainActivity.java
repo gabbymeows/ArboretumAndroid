@@ -26,7 +26,7 @@ import fragments.InfoFragment;
 import fragments.FavoritesFragment;
 import fragments.PlantDetailsFragment;
 import fragments.PlantGridFragment;
-import models.PlantMap;
+import fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,12 +44,6 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
-    @Override
-    public void onSaveInstanceState(final Bundle state){
-        super.onSaveInstanceState(state);
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setCustomView(tabHeader0);
         tabLayout.getTabAt(1).setCustomView(tabHeader1);
         tabLayout.getTabAt(2).setCustomView(tabHeader2);
-        tabLayout.getTabAt(3).setCustomView(tabHeader4);
-        //tabLayout.getTabAt(4).setCustomView(tabHeader3);
+        tabLayout.getTabAt(3).setCustomView(tabHeader3);
+        tabLayout.getTabAt(4).setCustomView(tabHeader4);
         //tabLayout.getTabAt(5).setCustomView(tabHeader5);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -103,9 +97,6 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-
-
-        PlantMap.getInstance().populatePlantMap(getBaseContext());
 
     }
 
@@ -191,11 +182,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (position == 2)
                 return new MapFragment();
-//
-//            if (position == 3)
-//                return new FavoritesFragment();
 
             if (position == 3)
+                return new SearchFragment();
+
+            if (position == 4)
                 return new InfoFragment();
 
             //if (position == 5)
@@ -208,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 4;
+            return 5;
         }
 
         @Override
@@ -222,8 +213,8 @@ public class MainActivity extends AppCompatActivity {
                     return "SECTION 3";
                 case 3:
                     return "SECTION 4";
-//                case 4:
-//                    return "SECTION 5";
+                case 4:
+                    return "SECTION 5";
                 //case 5:
                 //    return "SECTION 6";
             }
