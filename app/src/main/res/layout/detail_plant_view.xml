@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/plantName"
+        android:id="@+id/title1"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
-        android:id="@+id/plantDescription1"
+        android:id="@+id/text1"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/plantHeader2"
+        android:id="@+id/title2"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
-        android:id="@+id/plantDescription2"
+        android:id="@+id/text2"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/plantHeader3"
+        android:id="@+id/title3"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
-        android:id="@+id/plantDescription3"
+        android:id="@+id/text3"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

@@ -36,30 +36,30 @@ public class FavoritesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.favorites_view, container, false);
         //rootView.setVerticalScrollBarEnabled(true);
 
-        List<GridTile> tiles = new ArrayList<>();
-        tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
-        tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
-        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-        tiles.add(new GridTile("Gingko", "gingko_tile"));
-        tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
-        tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
-        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-        tiles.add(new GridTile("Gingko", "gingko_tile"));
-        tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
-        tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
-        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-        tiles.add(new GridTile("Gingko", "gingko_tile"));
-        tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
-        tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
-        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-        tiles.add(new GridTile("Gingko", "gingko_tile"));
-        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-        tiles.add(new GridTile("Gingko", "gingko_tile"));
+//        List<GridTile> tiles = new ArrayList<>();
+//        tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
+//        tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
+//        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
+//        tiles.add(new GridTile("Gingko", "gingko_tile"));
+//        tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
+//        tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
+//        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
+//        tiles.add(new GridTile("Gingko", "gingko_tile"));
+//        tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
+//        tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
+//        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
+//        tiles.add(new GridTile("Gingko", "gingko_tile"));
+//        tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
+//        tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
+//        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
+//        tiles.add(new GridTile("Gingko", "gingko_tile"));
+//        tiles.add(new GridTile("Black Locust", "black_locust_tile"));
+//        tiles.add(new GridTile("Gingko", "gingko_tile"));
 
 
         // Here we inflate the layout we created above
         GridView gridView = (GridView) rootView.findViewById(R.id.favplantgridview);
-        gridView.setAdapter(new GridViewAdapter(this.getActivity().getApplicationContext(), tiles));
+        //gridView.setAdapter(new GridViewAdapter(this.getActivity().getApplicationContext(), tiles));
 
 
         return rootView;

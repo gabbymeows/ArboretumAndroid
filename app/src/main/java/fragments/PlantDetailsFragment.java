@@ -41,21 +41,21 @@ public class PlantDetailsFragment extends PlantGridFragment{
         ImageView image = (ImageView) rootView.findViewById(R.id.largePlantImageView);
         image.setImageResource(R.drawable.blackhaw_viburnum_tile);
 
-        TextView name = (TextView) rootView.findViewById(R.id.plantName);
-        name.setText("Blackhaw Viburnum Tree");
-        TextView desc1 = (TextView) rootView.findViewById(R.id.plantDescription1);
-        desc1.setText("This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. ");
-
-        TextView header2 = (TextView) rootView.findViewById(R.id.plantHeader2);
-        header2.setText("Plant History");
-        TextView desc2 = (TextView) rootView.findViewById(R.id.plantDescription2);
-        desc2.setText("This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. ");
-
-        TextView header3 = (TextView) rootView.findViewById(R.id.plantHeader3);
-        header3.setText("Fun Facts");
-        TextView desc3 = (TextView) rootView.findViewById(R.id.plantDescription3);
-        desc3.setText("This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. ");
-
+//        TextView name = (TextView) rootView.findViewById(R.id.plantName);
+//        name.setText("Blackhaw Viburnum Tree");
+//        TextView desc1 = (TextView) rootView.findViewById(R.id.plantDescription1);
+//        desc1.setText("This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. ");
+//
+//        TextView header2 = (TextView) rootView.findViewById(R.id.plantHeader2);
+//        header2.setText("Plant History");
+//        TextView desc2 = (TextView) rootView.findViewById(R.id.plantDescription2);
+//        desc2.setText("This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. ");
+//
+//        TextView header3 = (TextView) rootView.findViewById(R.id.plantHeader3);
+//        header3.setText("Fun Facts");
+//        TextView desc3 = (TextView) rootView.findViewById(R.id.plantDescription3);
+//        desc3.setText("This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. This is a description and it will be fixed later. ");
+//
 
 
         return rootView;

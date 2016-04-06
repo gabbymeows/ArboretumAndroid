@@ -37,6 +37,10 @@ public class Plant {
         this.thumbnail = "";
     }
 
+    public Habit getHabit(){
+        return this.habit;
+    }
+
     public Plant(String code, JSONArray coords){
         try {
             this.code = code;

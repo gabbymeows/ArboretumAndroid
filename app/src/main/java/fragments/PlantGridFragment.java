@@ -4,12 +4,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -85,7 +87,7 @@ public class PlantGridFragment extends Fragment {
                     //Log.d("plant_tag", names.names().get(i).toString());
                     String plantCodeName = names[i];
 
-                    tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName), PlantMap.getInstance().getThumbnail(plantCodeName)));
+                    tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName).replace("<i>","").replace("</i> x", "").replace("</i>", ""), PlantMap.getInstance().getThumbnail(plantCodeName), plantCodeName) );
 
     /*
                     JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(names.names().get(i).toString()).get());
@@ -130,24 +132,38 @@ public class PlantGridFragment extends Fragment {
 
 
 
-
-
             GridViewAdapter workingAdapter = (GridViewAdapter)parent.getAdapter();
             GridTile tileClicked = ((GridTile)((parent.getAdapter()).getItem(position)));
             String plantname = workingAdapter.getPlantNameFromPosition(position);
+            String plantCode = tileClicked.getPlantCode();
 
             //todo figure out how to show the plant details fragment from here
             // THE FOLLOWING CODE IS BULLSHIT.... MIGHT BE USEFUL.... DUNNO....
 
             final Dialog dialog = new Dialog(parent.getContext());
-            dialog.setContentView(R.layout.plant_detail_view);
-            dialog.setTitle(plantname);
+            //dialog.setContentView(R.layout.plant_detail_view);
+
+            dialog.setContentView(R.layout.detail_plant_view);
+            String fixedName = plantname.replace("<i>","").replace("</i> x", "").replace("</i>", "");
+
+            dialog.setTitle(fixedName);
 
 
-            ImageView plantImage = (ImageView) dialog.findViewById(R.id.largePlantImage);
+            ImageView plantImage = (ImageView) dialog.findViewById(R.id.largePlantImageView);
             plantImage.setImageDrawable(((ImageView) view.findViewById(R.id.imageView)).getDrawable());
 
-            int imageId = workingAdapter.getImageIdFromPosition(position);
+            //int imageId = workingAdapter.getImageIdFromPosition(position);
+
+            Log.v("yooo", plantCode);
+            Plant plant = PlantMap.getInstance().getPlantMap().get(plantCode);
+
+            TextView title1 = (TextView) dialog.findViewById(R.id.title1);
+            title1.setText("Habit");
+
+            TextView text1 = (TextView) dialog.findViewById(R.id.text1);
+            text1.setText(plant.getHabit().getHabit());
+
+
             new DownloadImageTask(plantImage).execute(tileClicked.getImageResource());
 
             dialog.show();
