@@ -21,7 +21,7 @@ public class GetPlantNames extends AsyncTask<Void, Void, String> {
 
 
         try {
-            URL url = new URL("https://www.hort.net/uiplants-api/listPlants?key=7Vek7WIbv9FqPoKxjD7AriIj&regexp=^N");
+            URL url = new URL("https://www.hort.net/uiplants-api/getNearObjects?key=7Vek7WIbv9FqPoKxjD7AriIj&mycoords=40.096237,-88.217199&maxdistance=500&categoryregexp=plant");
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));

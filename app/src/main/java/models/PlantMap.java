@@ -158,10 +158,8 @@ public class PlantMap {
 
                 Plant currPlant = mPlants.get(code);
                 if (currPlant == null) {
-
-
                     Plant newplant = new Plant(code, plantData.getJSONArray("coords"));
-                    JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(code).get());
+                    JSONObject plantInfo = data.getJSONObject(code);
                     newplant.getFeaturesFromJson(plantInfo);
                     mPlants.put(code, newplant);
 
@@ -171,11 +169,6 @@ public class PlantMap {
 
             }
 
-
-
-
-
-
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -183,11 +176,27 @@ public class PlantMap {
 
     }
 
+    public String getThumbnail(String code){
+
+        if (mPlants.get(code) == null)
+
+        return "http://plantgenera.org/ILLUSTRATIONS_thumbnails/159888.jpg";
+        else {
+            String image = mPlants.get(code).getThumbnail();
+            if(image.equals(""))
+                return "http://plantgenera.org/ILLUSTRATIONS_thumbnails/159888.jpg";
+            else return image;
+        }
 
 
 
+    }
 
 
-
-
+    public String getSciName(String code) {
+        if (mPlants.get(code) == null){
+            return "Something is wrong";
+        }
+        else return mPlants.get(code).getSciName();
+    }
 }

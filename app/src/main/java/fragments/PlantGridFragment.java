@@ -38,7 +38,7 @@ public class PlantGridFragment extends Fragment {
     final boolean UPDATE_DATABASE = false;
 
     private static final String ARG_SECTION_NUMBER = "plant_grid_view";
-    protected HashMap<String, Plant> plantsMap;
+
 
     @Override
     public void onSaveInstanceState(final Bundle state){
@@ -62,61 +62,54 @@ public class PlantGridFragment extends Fragment {
             String a = new GetPlantNames().execute().get();
 
             JSONObject jsonObj = new JSONObject(a);
-            JSONObject names= jsonObj.getJSONObject("data");
+            String[] names = new String[jsonObj.length()];
+            Iterator<String> it = jsonObj.keys();
+            for(int i = 0; i < jsonObj.length(); i++){
 
 
-            PlantMap.getInstance().populatePlantMap(getContext());
+
+
+                names[i] = jsonObj.getJSONObject(it.next()).get("code").toString();
+
+
+            }
+
+
+
+
+            System.out.println(names.length);
             if (!UPDATE_DATABASE)
             {
-            for(int i = 0; i < names.length(); i++) {
+                for(int i = 0; i < names.length; i++) {
 
-                //Log.d("plant_tag", names.names().get(i).toString());
-                String plantCodeName = names.names().get(i).toString();
-                if (plantsMap.get(plantCodeName) != null)
-                    plantsMap.put(plantCodeName, null);
+                    //Log.d("plant_tag", names.names().get(i).toString());
+                    String plantCodeName = names[i];
 
-                JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(names.names().get(i).toString()).get());
-                StringBuffer imageURL = null;
-                if (plantInfo.getJSONObject("habit").getJSONArray("images").length() > 0) {
-                    imageURL = new StringBuffer(plantInfo.getJSONObject("habit").getJSONArray("images").get(0).toString());
-                } else if (plantInfo.getJSONObject("flowers").getJSONArray("images").length() > 0) {
-                    imageURL = new StringBuffer(plantInfo.getJSONObject("flowers").getJSONArray("images").get(0).toString());
-                } else if (plantInfo.getJSONObject("leaves").getJSONArray("images").length() > 0) {
-                    imageURL = new StringBuffer(plantInfo.getJSONObject("leaves").getJSONArray("images").get(0).toString());
-                } else if (plantInfo.getJSONObject("fruits").getJSONArray("images").length() > 0) {
-                    imageURL = new StringBuffer(plantInfo.getJSONObject("fruits").getJSONArray("images").get(0).toString());
-                } else {
-                    continue;
+                    tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName), PlantMap.getInstance().getThumbnail(plantCodeName)));
+
+    /*
+                    JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(names.names().get(i).toString()).get());
+                    StringBuffer imageURL = null;
+                    if (plantInfo.getJSONObject("habit").getJSONArray("images").length() > 0) {
+                        imageURL = new StringBuffer(plantInfo.getJSONObject("habit").getJSONArray("images").get(0).toString());
+                    } else if (plantInfo.getJSONObject("flowers").getJSONArray("images").length() > 0) {
+                        imageURL = new StringBuffer(plantInfo.getJSONObject("flowers").getJSONArray("images").get(0).toString());
+                    } else if (plantInfo.getJSONObject("leaves").getJSONArray("images").length() > 0) {
+                        imageURL = new StringBuffer(plantInfo.getJSONObject("leaves").getJSONArray("images").get(0).toString());
+                    } else if (plantInfo.getJSONObject("fruits").getJSONArray("images").length() > 0) {
+                        imageURL = new StringBuffer(plantInfo.getJSONObject("fruits").getJSONArray("images").get(0).toString());
+                    } else {
+                        continue;
+                    }
+
+    */
+
+
                 }
 
-
-                tiles.add(new GridTile(names.getJSONObject(names.names().get(i).toString()).get("com_name").toString(), imageURL.toString()));
-
-            }
-
             }
 
 
-/*
-            tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
-            tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-            tiles.add(new GridTile("Gingko", "gingko_tile"));
-            tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
-            tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
-            tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-            tiles.add(new GridTile("Gingko", "gingko_tile"));
-            tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
-            tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
-            tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-            tiles.add(new GridTile("Gingko", "gingko_tile"));
-            tiles.add(new GridTile("Dragon Eye Pine", "pine_grid_tile_image"));
-            tiles.add(new GridTile("Blackhaw Plant", "blackhaw_viburnum_tile"));
-            tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-            tiles.add(new GridTile("Gingko", "gingko_tile"));
-            tiles.add(new GridTile("Black Locust", "black_locust_tile"));
-            tiles.add(new GridTile("Gingko", "gingko_tile"));
-
-*/
             // Here we inflate the layout we created above
             GridView gridView = (GridView) rootView.findViewById(R.id.plantgridview);
             gridView.setAdapter(new GridViewAdapter(this.getActivity().getApplicationContext(), tiles));
@@ -125,7 +118,7 @@ public class PlantGridFragment extends Fragment {
             return rootView;
         }
         catch(Exception e){
-
+            e.printStackTrace();
         }
         return rootView;
     }

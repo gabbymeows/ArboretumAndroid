@@ -19,7 +19,7 @@ public class GetPlantInfo extends AsyncTask<String, Void, String> {
     public String doInBackground(String... code) {
 
         try {
-            URL url = new URL("https://www.hort.net/uiplants-api/getPlant?key=7Vek7WIbv9FqPoKxjD7AriIj&code=" + code[0] + "&markup=HTML");
+            URL url = new URL("https://www.hort.net/uiplants-api/getPlant?key=7Vek7WIbv9FqPoKxjD7AriIj&code=" + code[0]);
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
