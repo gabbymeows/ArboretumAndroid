@@ -37,8 +37,33 @@ public class Plant {
         this.thumbnail = null;
     }
 
+    public Plant(String code, JSONArray coords){
+        try {
+            this.code = code;
+            this.thumbnail = null;
+            this.coords = new ArrayList<Pair<Float,Float>>();
+            for (int i = 0; i < coords.length(); i++) {
+                this.addNewLocation(coords.get(i).toString());
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void addNewLocation(String coords){
         this.coords.add(stringToCoords(coords));
+    }
+
+    public void addNewLocation(JSONArray coords){
+        try {
+            for (int i = 0; i < coords.length(); i++) {
+                this.addNewLocation(coords.get(i).toString());
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 

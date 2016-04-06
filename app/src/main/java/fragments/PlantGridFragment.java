@@ -27,6 +27,7 @@ import java.util.Set;
 import adapters.GridViewAdapter;
 import models.GridTile;
 import models.Plant;
+import models.PlantMap;
 import seniorproject.arboretumapp.R;
 import plantsAPI.*;
 
@@ -37,7 +38,7 @@ import plantsAPI.*;
  */
 public class PlantGridFragment extends Fragment {
 
-    final boolean UPDATE_DATABASE = true;
+    final boolean UPDATE_DATABASE = false;
 
     private static final String ARG_SECTION_NUMBER = "plant_grid_view";
 
@@ -66,7 +67,7 @@ public class PlantGridFragment extends Fragment {
             JSONObject names= jsonObj.getJSONObject("data");
 
 
-
+            PlantMap.getInstance().populatePlantMap(getContext());
             if (!UPDATE_DATABASE)
             {
             for(int i = 0; i < names.length(); i++) {
@@ -118,8 +119,7 @@ public class PlantGridFragment extends Fragment {
             GridView gridView = (GridView) rootView.findViewById(R.id.plantgridview);
             gridView.setAdapter(new GridViewAdapter(this.getActivity().getApplicationContext(), tiles));
             gridView.setOnItemClickListener(onListClick);
-            if(UPDATE_DATABASE)
-                downloadDatabase(getContext());
+
             return rootView;
         }
         catch(Exception e){
@@ -127,6 +127,8 @@ public class PlantGridFragment extends Fragment {
         }
         return rootView;
     }
+
+
 
     private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -165,60 +167,19 @@ public class PlantGridFragment extends Fragment {
 
 
     private static void downloadDatabase(Context ctx){
-        HashMap<String, Plant> plants = new HashMap<String, Plant>();
-
-        try {
-            String a = new GetPlantLocations().execute().get();
-            JSONObject jsonObj = new JSONObject(a);
-            JSONObject names = jsonObj.getJSONObject("data");
 
 
 
-            Iterator<String> it = names.keys();
-            for(int i = 0; i < names.length(); i++) {
-                JSONObject plantData = names.getJSONObject(it.next());
-                String code = plantData.get("code").toString();
-                Plant currPlant = plants.get(code);
-                if( currPlant == null){
-                    Plant newplant = new Plant(code, plantData.get("coords").toString());
-
-                    JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(code).get());
-                    newplant.getFeaturesFromJson(plantInfo);
-                    plants.put(code,newplant);
-
-                }
-                else{
-                    currPlant.addNewLocation(plantData.get("coords").toString());
-                }
                 //JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(names.names().get(i).toString()).get());
                 //plantInfo.getJSONObject("habit").getJSONArray("images").length() > 0
-            }
 
 
-            JSONObject database = new JSONObject();
-            Set<Map.Entry<String, Plant>> set = plants.entrySet();
-            Iterator<Map.Entry<String,Plant>> it2 = set.iterator();
-            while (it2.hasNext()){
-                Map.Entry<String, Plant> current = it2.next();
-                database.put(current.getKey(),current.getValue().getJSON());
-            }
+        try {
 
-            System.out.println(database.toString(4));
-            /*
-            FileOutputStream outputStream;
 
-            try {
-                outputStream = ctx.openFileOutput("data.txt", Context.MODE_PRIVATE);
-                outputStream.write(database.toString(1).getBytes());
-                outputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            System.out.println(ctx.getFilesDir().toString());
-            File filenew = new File("/data/data/seniorproject.arboretumapp/files/data.txt");
-            int file_size = Integer.parseInt(String.valueOf(filenew.length()/1024));
-            System.out.println(file_size);
-            */
+                /*
+
+                */
         }
         catch(Exception e){
             e.printStackTrace();
