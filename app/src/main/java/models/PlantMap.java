@@ -124,6 +124,7 @@ public class PlantMap {
         }
         else{
 
+            //getInstance().updatePlantData(ctx);
             getInstance().readPlantDataFromFile();
         }
 

@@ -78,6 +78,7 @@ public class PlantGridFragment extends Fragment {
 
 
 
+            //PlantMap.getInstance().populatePlantMap(getContext());
 
             System.out.println(names.length);
             if (!UPDATE_DATABASE)
@@ -162,6 +163,18 @@ public class PlantGridFragment extends Fragment {
 
             TextView text1 = (TextView) dialog.findViewById(R.id.text1);
             text1.setText(plant.getHabit().getHabit());
+
+            TextView title2 = (TextView) dialog.findViewById(R.id.title2);
+            title2.setText("Color");
+
+            TextView text2 = (TextView) dialog.findViewById(R.id.text2);
+            text2.setText(plant.getHabit().getColor());
+
+            TextView title3 = (TextView) dialog.findViewById(R.id.title3);
+            title3.setText("Description");
+
+            TextView text3 = (TextView) dialog.findViewById(R.id.text3);
+            text3.setText(plant.getHabit().getDescription());
 
 
             new DownloadImageTask(plantImage).execute(tileClicked.getImageResource());

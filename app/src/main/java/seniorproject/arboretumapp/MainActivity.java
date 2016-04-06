@@ -27,6 +27,7 @@ import fragments.FavoritesFragment;
 import fragments.PlantDetailsFragment;
 import fragments.PlantGridFragment;
 import fragments.SearchFragment;
+import models.PlantMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -97,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+        PlantMap.getInstance().populatePlantMap(getBaseContext());
 
     }
 

@@ -91,7 +91,7 @@ public class MapFragment extends Fragment {
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(40.093118, -88.216759))
                 .title("Ponds"))
-                .setSnippet("Developed in 1997 as a gift-in-kind from the Illinois Land Improvement Contractors Association.");
+                .setSnippet("Developed in 1997 as a gift-in-kind from the Illinois Land \n Improvement Contractors Association.");
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(40.093620, -88.218096))
                 .title("Pond event lawn E1"))
