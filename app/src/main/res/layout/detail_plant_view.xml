@@ -7,6 +7,38 @@
     android:layout_height="5000dp">
 
 
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_margin="5dp"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:id="@+id/closeButton"
+            android:background="@drawable/back_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Scientific Name"
+            android:id="@+id/sciname"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Common Name"
+            android:id="@+id/comname"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
     <ImageView
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
@@ -21,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Common Name"
         android:id="@+id/title1"
         android:layout_gravity="center_horizontal" />
 
@@ -80,6 +112,12 @@
         android:text="Small Text"
         android:id="@+id/text3"
         android:layout_gravity="center_horizontal" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New RadioButton"
+        android:id="@+id/radioButton3" />
 
 </LinearLayout>
 </ScrollView>

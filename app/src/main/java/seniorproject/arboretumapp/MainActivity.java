@@ -64,20 +64,19 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        TextView tabHeader0 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
-        tabHeader0.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_home, 0, 0);
-
         TextView tabHeader1 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
-        tabHeader1.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_tree, 0, 0);
+        tabHeader1.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.calendar_38, 0, 0);
+
+        TextView tabHeader0 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
+        tabHeader0.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.tree_38, 0, 0);
 
         TextView tabHeader2 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
-        tabHeader2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_map, 0, 0);
+        tabHeader2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.marker_38, 0, 0);
 
         TextView tabHeader3 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
-        tabHeader3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_heart, 0, 0);
-
+        tabHeader3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.search_38, 0, 0);
         TextView tabHeader4 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
-        tabHeader4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_info, 0, 0);
+        tabHeader4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.info_38, 0, 0);
 
         //TextView tabHeader5 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
         //tabHeader5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.med_info, 0, 0);
@@ -176,11 +175,13 @@ public class MainActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
-            if (position == 0)
-                return new HomeFragment();
-
-            if(position == 1){
+            if (position == 0){
+                //return new HomeFragment();
                 return new PlantGridFragment();
+            }
+            if(position == 1){
+                //return new PlantGridFragment();
+                return new HomeFragment();
             }
 
             if (position == 2)

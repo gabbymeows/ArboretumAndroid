@@ -9,8 +9,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,6 +27,8 @@ public class PlantMap {
 
     private static PlantMap mInstance = null;
     private HashMap<String, Plant> mPlants;
+    private List<String> sciNamesList;
+    private List<String> comNamesList;
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
@@ -40,6 +44,24 @@ public class PlantMap {
     public HashMap<String, Plant> getPlantMap(){
 
         return mPlants;
+    }
+
+    public List<String> getSciNamesList(){
+        sciNamesList = new ArrayList<String>();
+        for( Plant p : mPlants.values()){
+            sciNamesList.add(p.getSciName());
+        }
+
+        return sciNamesList;
+    }
+
+    public List<String> getComName(){
+        comNamesList = new ArrayList<String>();
+        for( Plant p : mPlants.values()){
+            comNamesList.add(p.getComName());
+        }
+
+        return comNamesList;
     }
 
     public void updatePlantData(Context ctx){

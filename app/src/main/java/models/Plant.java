@@ -395,4 +395,40 @@ public class Plant {
     public String getSciName() {
         return this.sci_name;
     }
+
+    public String getComName(){
+        return this.com_name;
+    }
+
+    public Feature getLeaves(){
+        return this.leaves;
+    }
+
+    public Feature getFruits(){
+        return this.fruits;
+    }
+
+    public Feature getBuds(){
+        return this.buds;
+    }
+
+    public Feature getBark(){
+        return this.bark;
+    }
+
+    public Feature getFlowers(){
+        return this.flowers;
+    }
+
+    public Feature getFallcolor(){
+        return this.fallcolor;
+    }
+
+    public Feature getStems(){
+        return this.stems;
+    }
+
+    public Feature getCulture(){
+        return this.culture;
+    }
 }

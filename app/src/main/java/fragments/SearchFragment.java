@@ -14,6 +14,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import models.PlantMap;
 import seniorproject.arboretumapp.R;
 
 public class SearchFragment extends Fragment {
@@ -47,9 +48,11 @@ public class SearchFragment extends Fragment {
 
                 // Adding items to listview
                 //adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_2, android.R.id.text1, products);
-                adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.list_item, R.id.product_name, products);
-                lv.setAdapter(adapter);
+                adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.list_item, R.id.sci_name, PlantMap.getInstance().getSciNamesList());
+                //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this.getActivity(), R.layout.list_item, R.id.com_name, PlantMap.getInstance().getComName());
 
+
+                lv.setAdapter(adapter);
                 inputSearch.addTextChangedListener(new TextWatcher() {
 
                     @Override
