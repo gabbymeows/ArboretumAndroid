@@ -38,7 +38,7 @@ import models.Plant;
 import models.PlantMap;
 import seniorproject.arboretumapp.R;
 import plantsAPI.*;
-
+import views.PlantDetails;
 
 
 /**
@@ -140,154 +140,135 @@ public class PlantGridFragment extends Fragment {
     private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-            GridViewAdapter workingAdapter = (GridViewAdapter) parent.getAdapter();
             GridTile tileClicked = ((GridTile) ((parent.getAdapter()).getItem(position)));
-            String plantname = workingAdapter.getPlantNameFromPosition(position);
-            String plantCode = tileClicked.getPlantCode();
+            PlantDetails.getDialog(tileClicked.getPlantCode(), parent.getContext(), view).show();
 
-            //todo figure out how to show the plant details fragment from here
-            // THE FOLLOWING CODE IS BULLSHIT.... MIGHT BE USEFUL.... DUNNO....
-
-            final Dialog dialog = new Dialog(parent.getContext());
-            //dialog.setContentView(R.layout.plant_detail_view);
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-            Display display = ((Activity) getContext()).getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            int width = size.x;
-            int height = size.y;
-
-            dialog.getWindow().setLayout((int) .96 * width, (int) .4 * height);
-
-            //dialog.setContentView(R.layout.detail_plant_view);
-            dialog.setContentView(R.layout.test2_details);
-            String fixedName = plantname.replace("<i>", "").replace("</i> x", "").replace("</i>", "");
-
-
-            //dialog.setTitle(fixedName);
-
-            Button closeButton = (Button) dialog.findViewById(R.id.closeButton);
-
-            closeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-
-                }
-            });
-
-
-            ImageView plantImage = (ImageView) dialog.findViewById(R.id.largePlantImageView);
-            plantImage.setImageDrawable(((ImageView) view.findViewById(R.id.imageView)).getDrawable());
-
-            //int imageId = workingAdapter.getImageIdFromPosition(position);
-
-
-            Plant plant = PlantMap.getInstance().getPlantMap().get(plantCode);
-
-            ((TextView) dialog.findViewById(R.id.sciname)).setText(plantname);
-            ((TextView) dialog.findViewById(R.id.comname)).setText(plant.getComName());
-
-            ((TextView) dialog.findViewById(R.id.About)).setText("About");
-            ((TextView) dialog.findViewById(R.id.DescriptionMainTitle)).setText("Description");
-
-
-            ((TextView) dialog.findViewById(R.id.descriptionmain)).setText(plant.getHabit().getDescription());
-            ((TextView) dialog.findViewById(R.id.color)).setText("Color: " + plant.getHabit().getColor());
-            ((TextView) dialog.findViewById(R.id.size)).setText("Size: " + plant.getHabit().getSize());
-            ((TextView) dialog.findViewById(R.id.texture)).setText("Texture: " + plant.getHabit().getTexture());
-            ((TextView) dialog.findViewById(R.id.Habit)).setText("Habit");
-            ((TextView) dialog.findViewById(R.id.habit)).setText(plant.getHabit().getHabit());
+//            GridViewAdapter workingAdapter = (GridViewAdapter) parent.getAdapter();
+//            //GridTile tileClicked = ((GridTile) ((parent.getAdapter()).getItem(position)));
+//            String plantname = workingAdapter.getPlantNameFromPosition(position);
+//            String plantCode = tileClicked.getPlantCode();
 //
-//            if (plant.getLeaves().getDescription() == null || plant.getLeaves().getDescription().equals("null")){
-//                Log.v("yo", "its null "+plant.getLeaves().getDescription());
+//            //todo figure out how to show the plant details fragment from here
+//            // THE FOLLOWING CODE IS BULLSHIT.... MIGHT BE USEFUL.... DUNNO....
+//
+//            final Dialog dialog = new Dialog(parent.getContext());
+//            //dialog.setContentView(R.layout.plant_detail_view);
+//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//
+//            Display display = ((Activity) getContext()).getWindowManager().getDefaultDisplay();
+//            Point size = new Point();
+//            display.getSize(size);
+//            int width = size.x;
+//            int height = size.y;
+//
+//            dialog.getWindow().setLayout((int) .96 * width, (int) .4 * height);
+//
+//            //dialog.setContentView(R.layout.detail_plant_view);
+//            dialog.setContentView(R.layout.test2_details);
+//            String fixedName = plantname.replace("<i>", "").replace("</i> x", "").replace("</i>", "");
+//
+//
+//            //dialog.setTitle(fixedName);
+//
+//            Button closeButton = (Button) dialog.findViewById(R.id.closeButton);
+//
+//            closeButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    dialog.dismiss();
+//
+//                }
+//            });
+//
+//
+//            ImageView plantImage = (ImageView) dialog.findViewById(R.id.largePlantImageView);
+//            plantImage.setImageDrawable(((ImageView) view.findViewById(R.id.imageView)).getDrawable());
+//
+//            //int imageId = workingAdapter.getImageIdFromPosition(position);
+//
+//
+//            Plant plant = PlantMap.getInstance().getPlantMap().get(plantCode);
+//
+//            ((TextView) dialog.findViewById(R.id.sciname)).setText(plantname);
+//            ((TextView) dialog.findViewById(R.id.comname)).setText(plant.getComName());
+//
+//            ((TextView) dialog.findViewById(R.id.About)).setText("About");
+//            ((TextView) dialog.findViewById(R.id.DescriptionMainTitle)).setText("Description");
+//
+//
+//            ((TextView) dialog.findViewById(R.id.descriptionmain)).setText(plant.getHabit().getDescription());
+//            ((TextView) dialog.findViewById(R.id.color)).setText("Color: " + plant.getHabit().getColor());
+//            ((TextView) dialog.findViewById(R.id.size)).setText("Size: " + plant.getHabit().getSize());
+//            ((TextView) dialog.findViewById(R.id.texture)).setText("Texture: " + plant.getHabit().getTexture());
+//            ((TextView) dialog.findViewById(R.id.Habit)).setText("Habit");
+//            ((TextView) dialog.findViewById(R.id.habit)).setText(plant.getHabit().getHabit());
+////
+////            if (plant.getLeaves().getDescription() == null || plant.getLeaves().getDescription().equals("null")){
+////                Log.v("yo", "its null "+plant.getLeaves().getDescription());
+////            }
+//
+//            if (!plant.getLeaves().getDescription().equals("null") && !plant.getLeaves().getDescription().equals("")){
+//                ((TextView) dialog.findViewById(R.id.Leaves)).setText("Leaves");
+//                ((TextView) dialog.findViewById(R.id.leaves)).setText(plant.getLeaves().getDescription());
+//                Log.v("yo", "not null... " + plant.getLeaves().getDescription());
+//         }
+//
+//            ((TextView) dialog.findViewById(R.id.Fruits)).setText("Fruits");
+//            ((TextView) dialog.findViewById(R.id.fruits)).setText(plant.getFruits().getDescription());
+//            ((TextView) dialog.findViewById(R.id.Buds)).setText("Buds");
+//            ((TextView) dialog.findViewById(R.id.buds)).setText(plant.getBuds().getDescription());
+//            ((TextView) dialog.findViewById(R.id.Bark)).setText("Bark");
+//            ((TextView) dialog.findViewById(R.id.bark)).setText(plant.getBark().getDescription());
+//            ((TextView) dialog.findViewById(R.id.Culture)).setText("Culture");
+//            ((TextView) dialog.findViewById(R.id.culture)).setText(plant.getCulture().getDescription());
+//            ((TextView) dialog.findViewById(R.id.Flower)).setText("Flower");
+//            ((TextView) dialog.findViewById(R.id.flower)).setText(plant.getFlowers().getDescription());
+//            ((TextView) dialog.findViewById(R.id.Fall)).setText("Fall Color");
+//            ((TextView) dialog.findViewById(R.id.fall)).setText(plant.getFallcolor().getDescription());
+//            ((TextView) dialog.findViewById(R.id.Stem)).setText("Stems");
+//            ((TextView) dialog.findViewById(R.id.stem)).setText(plant.getStems().getDescription());
+//
+//            Bitmap imageHabit = null;
+//            Bitmap imageFlower = null;
+//            Bitmap imageLeaves = null;
+//            Bitmap imageBuds = null;
+//            Bitmap imageFruit = null;
+//            Bitmap imageBark = null;
+//            Bitmap imageCulture = null;
+//            Bitmap imageFall = null;
+//            Bitmap imageStem = null;
+//
+//            try {
+//                imageHabit = new DownloadImageTask(plantImage).execute(plant.getHabit().getImage(0)).get();
+//                imageLeaves = new DownloadImageTask(plantImage).execute(plant.getLeaves().getImage(0)).get();
+//                imageBuds = new DownloadImageTask(plantImage).execute(plant.getBuds().getImage(0)).get();
+//                imageFlower = new DownloadImageTask(plantImage).execute(plant.getFlowers().getImage(0)).get();
+//                imageFruit = new DownloadImageTask(plantImage).execute(plant.getFruits().getImage(0)).get();
+//                imageBark = new DownloadImageTask(plantImage).execute(plant.getBark().getImage(0)).get();
+//                imageCulture = new DownloadImageTask(plantImage).execute(plant.getCulture().getImage(0)).get();
+//                imageFall = new DownloadImageTask(plantImage).execute(plant.getFallcolor().getImage(0)).get();
+//                imageStem = new DownloadImageTask(plantImage).execute(plant.getStems().getImage(0)).get();
+//                //imageHabit = new DownloadImageTask(plantImage).execute(plant.getHabit().getImage(0)).get();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } catch (ExecutionException e) {
+//                e.printStackTrace();
 //            }
-
-            if (!plant.getLeaves().getDescription().equals("null") && !plant.getLeaves().getDescription().equals("")){
-                ((TextView) dialog.findViewById(R.id.Leaves)).setText("Leaves");
-                ((TextView) dialog.findViewById(R.id.leaves)).setText(plant.getLeaves().getDescription());
-                Log.v("yo", "not null... " + plant.getLeaves().getDescription());
-         }
-
-            ((TextView) dialog.findViewById(R.id.Fruits)).setText("Fruits");
-            ((TextView) dialog.findViewById(R.id.fruits)).setText(plant.getFruits().getDescription());
-            ((TextView) dialog.findViewById(R.id.Buds)).setText("Buds");
-            ((TextView) dialog.findViewById(R.id.buds)).setText(plant.getBuds().getDescription());
-            ((TextView) dialog.findViewById(R.id.Bark)).setText("Bark");
-            ((TextView) dialog.findViewById(R.id.bark)).setText(plant.getBark().getDescription());
-            ((TextView) dialog.findViewById(R.id.Culture)).setText("Culture");
-            ((TextView) dialog.findViewById(R.id.culture)).setText(plant.getCulture().getDescription());
-            ((TextView) dialog.findViewById(R.id.Flower)).setText("Flower");
-            ((TextView) dialog.findViewById(R.id.flower)).setText(plant.getFlowers().getDescription());
-            ((TextView) dialog.findViewById(R.id.Fall)).setText("Fall Color");
-            ((TextView) dialog.findViewById(R.id.fall)).setText(plant.getFallcolor().getDescription());
-            ((TextView) dialog.findViewById(R.id.Stem)).setText("Stems");
-            ((TextView) dialog.findViewById(R.id.stem)).setText(plant.getStems().getDescription());
-
-            Bitmap imageHabit = null;
-            Bitmap imageFlower = null;
-            Bitmap imageLeaves = null;
-            Bitmap imageBuds = null;
-            Bitmap imageFruit = null;
-            Bitmap imageBark = null;
-            Bitmap imageCulture = null;
-            Bitmap imageFall = null;
-            Bitmap imageStem = null;
-
-            try {
-                imageHabit = new DownloadImageTask(plantImage).execute(plant.getHabit().getImage(0)).get();
-                imageLeaves = new DownloadImageTask(plantImage).execute(plant.getLeaves().getImage(0)).get();
-                imageBuds = new DownloadImageTask(plantImage).execute(plant.getBuds().getImage(0)).get();
-                imageFlower = new DownloadImageTask(plantImage).execute(plant.getFlowers().getImage(0)).get();
-                imageFruit = new DownloadImageTask(plantImage).execute(plant.getFruits().getImage(0)).get();
-                imageBark = new DownloadImageTask(plantImage).execute(plant.getBark().getImage(0)).get();
-                imageCulture = new DownloadImageTask(plantImage).execute(plant.getCulture().getImage(0)).get();
-                imageFall = new DownloadImageTask(plantImage).execute(plant.getFallcolor().getImage(0)).get();
-                imageStem = new DownloadImageTask(plantImage).execute(plant.getStems().getImage(0)).get();
-                //imageHabit = new DownloadImageTask(plantImage).execute(plant.getHabit().getImage(0)).get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            ((ImageView)dialog.findViewById(R.id.habitimage)).setImageBitmap(imageHabit);
-            ((ImageView)dialog.findViewById(R.id.leavesimage)).setImageBitmap(imageLeaves);
-            ((ImageView)dialog.findViewById(R.id.budsimage)).setImageBitmap(imageBuds);
-            ((ImageView)dialog.findViewById(R.id.flowerimage)).setImageBitmap(imageFlower);
-            ((ImageView)dialog.findViewById(R.id.fruitimage)).setImageBitmap(imageFruit);
-            ((ImageView)dialog.findViewById(R.id.barkimage)).setImageBitmap(imageBark);
-            ((ImageView)dialog.findViewById(R.id.cultureimage)).setImageBitmap(imageCulture);
-            ((ImageView)dialog.findViewById(R.id.fallimage)).setImageBitmap(imageFall);
-            ((ImageView)dialog.findViewById(R.id.stemimage)).setImageBitmap(imageStem);
-
-
-//            TextView title1 = (TextView) dialog.findViewById(R.id.title1);
-//            title1.setText("Habit");
+//            ((ImageView)dialog.findViewById(R.id.habitimage)).setImageBitmap(imageHabit);
+//            ((ImageView)dialog.findViewById(R.id.leavesimage)).setImageBitmap(imageLeaves);
+//            ((ImageView)dialog.findViewById(R.id.budsimage)).setImageBitmap(imageBuds);
+//            ((ImageView)dialog.findViewById(R.id.flowerimage)).setImageBitmap(imageFlower);
+//            ((ImageView)dialog.findViewById(R.id.fruitimage)).setImageBitmap(imageFruit);
+//            ((ImageView)dialog.findViewById(R.id.barkimage)).setImageBitmap(imageBark);
+//            ((ImageView)dialog.findViewById(R.id.cultureimage)).setImageBitmap(imageCulture);
+//            ((ImageView)dialog.findViewById(R.id.fallimage)).setImageBitmap(imageFall);
+//            ((ImageView)dialog.findViewById(R.id.stemimage)).setImageBitmap(imageStem);
 //
-//            TextView text1 = (TextView) dialog.fidViewById(R.id.text1);
-//            text1.setText(plant.getHabit().getHabit());
 //
-//            TextView title2 = (TextView) dialog.findViewById(R.id.title2);
-//            title2.setText("Color");
 //
-//            TextView text2 = (TextView) dialog.findViewById(R.id.text2);
-//            text2.setText(plant.getHabit().getColor());
+//            new DownloadImageTask(plantImage).execute(tileClicked.getImageResource());
 //
-//            TextView title3 = (TextView) dialog.findViewById(R.id.title3);
-//            title3.setText("Description");
-//
-//            TextView text3 = (TextView) dialog.findViewById(R.id.text3);
-//            text3.setText(plant.getHabit().getDescription());
-
-
-            new DownloadImageTask(plantImage).execute(tileClicked.getImageResource());
-
-            dialog.show();
-            // END OF BULLSHIT CODEs
-
-            //getFragmentManager().findFragmentById(R.id.fra)
+//            dialog.show();
 
         }
     };

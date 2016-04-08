@@ -27,8 +27,8 @@ public class PlantMap {
 
     private static PlantMap mInstance = null;
     private HashMap<String, Plant> mPlants;
-    private List<String> sciNamesList;
-    private List<String> comNamesList;
+    private List<String> namesList;
+    private HashMap<String, String> nameToCodeMap;
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
@@ -46,22 +46,22 @@ public class PlantMap {
         return mPlants;
     }
 
-    public List<String> getSciNamesList(){
-        sciNamesList = new ArrayList<String>();
+    public List<String> getDisplayNamesList(){
+        namesList = new ArrayList<String>();
         for( Plant p : mPlants.values()){
-            sciNamesList.add(p.getSciName());
+            namesList.add(p.getSciName() + " (" + p.getComName()+")");
         }
 
-        return sciNamesList;
+        return namesList;
     }
 
-    public List<String> getComName(){
-        comNamesList = new ArrayList<String>();
+    public HashMap<String, String> getNameToCodeMap(){
+        nameToCodeMap = new HashMap<String, String>();
         for( Plant p : mPlants.values()){
-            comNamesList.add(p.getComName());
+            nameToCodeMap.put(p.getSciName() + " (" + p.getComName() + ")", p.code);
         }
 
-        return comNamesList;
+        return nameToCodeMap;
     }
 
     public void updatePlantData(Context ctx){

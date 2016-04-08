@@ -7,11 +7,12 @@
     <!-- Single ListItem -->
 
     <!-- Product Name -->
+
     <TextView android:id="@+id/sci_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dip"
-        android:textSize="16dip"
-        android:textStyle="bold"/>
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"/>
 
 </LinearLayout>
