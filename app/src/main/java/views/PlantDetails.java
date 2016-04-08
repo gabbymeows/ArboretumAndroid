@@ -119,15 +119,15 @@ public class PlantDetails {
         Bitmap imageStem = null;
 
         try {
-            imageHabit = new DownloadImageTask(plantImage).execute(plant.getHabit().getImage(0)).get();
-            imageLeaves = new DownloadImageTask(plantImage).execute(plant.getLeaves().getImage(0)).get();
-            imageBuds = new DownloadImageTask(plantImage).execute(plant.getBuds().getImage(0)).get();
-            imageFlower = new DownloadImageTask(plantImage).execute(plant.getFlowers().getImage(0)).get();
-            imageFruit = new DownloadImageTask(plantImage).execute(plant.getFruits().getImage(0)).get();
-            imageBark = new DownloadImageTask(plantImage).execute(plant.getBark().getImage(0)).get();
-            imageCulture = new DownloadImageTask(plantImage).execute(plant.getCulture().getImage(0)).get();
-            imageFall = new DownloadImageTask(plantImage).execute(plant.getFallcolor().getImage(0)).get();
-            imageStem = new DownloadImageTask(plantImage).execute(plant.getStems().getImage(0)).get();
+            imageHabit = new DownloadImageTask((ImageView)dialog.findViewById(R.id.habitimage)).execute(plant.getHabit().getImage(0)).get();
+            imageLeaves = new DownloadImageTask((ImageView)dialog.findViewById(R.id.leavesimage)).execute(plant.getLeaves().getImage(0)).get();
+            imageBuds = new DownloadImageTask((ImageView)dialog.findViewById(R.id.budsimage)).execute(plant.getBuds().getImage(0)).get();
+            imageFlower = new DownloadImageTask((ImageView)dialog.findViewById(R.id.flowerimage)).execute(plant.getFlowers().getImage(0)).get();
+            imageFruit = new DownloadImageTask((ImageView)dialog.findViewById(R.id.fruitimage)).execute(plant.getFruits().getImage(0)).get();
+            imageBark = new DownloadImageTask((ImageView)dialog.findViewById(R.id.barkimage)).execute(plant.getBark().getImage(0)).get();
+            imageCulture = new DownloadImageTask((ImageView)dialog.findViewById(R.id.cultureimage)).execute(plant.getCulture().getImage(0)).get();
+            imageFall = new DownloadImageTask((ImageView)dialog.findViewById(R.id.fallimage)).execute(plant.getFallcolor().getImage(0)).get();
+            imageStem = new DownloadImageTask((ImageView)dialog.findViewById(R.id.stemimage)).execute(plant.getStems().getImage(0)).get();
             //imageHabit = new DownloadImageTask(plantImage).execute(plant.getHabit().getImage(0)).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
