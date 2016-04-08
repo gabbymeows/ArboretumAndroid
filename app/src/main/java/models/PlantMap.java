@@ -1,6 +1,7 @@
 package models;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -49,7 +50,7 @@ public class PlantMap {
     public List<String> getDisplayNamesList(){
         namesList = new ArrayList<String>();
         for( Plant p : mPlants.values()){
-            namesList.add(p.getSciName() + " (" + p.getComName()+")");
+            namesList.add(p.getSciName() + " (" + p.getComName() + ")");
         }
 
         return namesList;
@@ -66,6 +67,7 @@ public class PlantMap {
 
     public void updatePlantData(Context ctx){
 
+        Log.v("gab", "update started PLANT");
         try {
             String a = new GetPlantLocations().execute().get();
             JSONObject jsonObj = new JSONObject(a);
@@ -80,7 +82,7 @@ public class PlantMap {
                 if (currPlant == null) {
                     Plant newplant = new Plant(code, plantData.get("coords").toString());
 
-                    JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(code).get());
+                    JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(code).get().replace("[ITALIC]", "").replace("[TAB]", ""));
                     newplant.getFeaturesFromJson(plantInfo);
                     mPlants.put(code, newplant);
 
@@ -95,6 +97,8 @@ public class PlantMap {
         }
 
         getInstance().writeToFile(getInstance().getJSON(),ctx );
+
+        Log.v("gab", "update finished PLANT");
     }
 
     public JSONObject getJSON(){
@@ -151,6 +155,10 @@ public class PlantMap {
         }
 
 
+    }
+
+    public void updateData(Context ctx){
+        getInstance().updatePlantData(ctx);
     }
 
     private void readPlantDataFromFile(){
