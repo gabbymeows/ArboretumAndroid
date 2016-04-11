@@ -28,7 +28,6 @@ public class Plant {
     private Feature culture;
     private Habit habit;
     private String thumbnail;
-    private boolean favorite;
 
 
     public Plant(String code, String coords){
@@ -36,7 +35,6 @@ public class Plant {
         this.coords = new ArrayList<Pair<Float,Float>>();
         this.addNewLocation(coords);
         this.thumbnail = "";
-        this.favorite = false;
     }
 
     public Habit getHabit(){
@@ -432,13 +430,5 @@ public class Plant {
 
     public Feature getCulture(){
         return this.culture;
-    }
-
-    public void setFavorite(boolean favorite){
-        this.favorite = favorite;
-    }
-
-    public boolean isFavorite(){
-        return this.favorite;
     }
 }

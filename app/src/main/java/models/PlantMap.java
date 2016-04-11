@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class PlantMap {
     private HashMap<String, Plant> mPlants;
     private List<String> namesList;
     private HashMap<String, String> nameToCodeMap;
-    private List<String> favoritePlantsList;
+    private Set<String> favoritePlantsList;
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
@@ -48,9 +49,9 @@ public class PlantMap {
         return mPlants;
     }
 
-    public List<String> getFavoritePlantsList(){
+    public Set<String> getFavoritePlantsList(){
         if (favoritePlantsList == null)
-            favoritePlantsList = new ArrayList<String>();
+            favoritePlantsList = new HashSet<String>();
         return favoritePlantsList;
     }
 
@@ -89,7 +90,8 @@ public class PlantMap {
                 if (currPlant == null) {
                     Plant newplant = new Plant(code, plantData.get("coords").toString());
 
-                    JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(code).get().replace("[ITALIC]", "").replace("[TAB]", ""));
+                    //.replace("[ITALIC]", "").replace("[TAB]", "")
+                    JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(code).get());
                     newplant.getFeaturesFromJson(plantInfo);
                     mPlants.put(code, newplant);
 

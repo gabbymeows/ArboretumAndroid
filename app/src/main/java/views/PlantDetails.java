@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
@@ -29,13 +30,13 @@ import seniorproject.arboretumapp.R;
  */
 public class PlantDetails {
 
-    public static Dialog getDialog(final String plantCode, Context context, View view){
+    public static Dialog getDialog(final String plantCode, final Context context, View view){
 
         final Dialog dialog = new Dialog(context);
         //dialog.setContentView(R.layout.plant_detail_view);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        String plantname = PlantMap.getInstance().getPlantMap().get(plantCode).getComName();
+        final String plantname = PlantMap.getInstance().getPlantMap().get(plantCode).getComName();
 
 //        Display display = ((Activity) getContext()).getWindowManager().getDefaultDisplay();
 //        Point size = new Point();
@@ -150,40 +151,28 @@ public class PlantDetails {
 
         plantImage.setImageBitmap(imageLeaves);
 
-        final RadioButton fav = (RadioButton) dialog.findViewById(R.id.favRadioButton);
-
-        fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (fav.isChecked()) {
-                    Log.v("yoo", "fav is checked");
-                } else {
-                    Log.v("yoo", "fav is NOT checked");
-                }
-
-            }
-        });
 
         final ImageButton like = (ImageButton) dialog.findViewById(R.id.likeButton);
         //like.setImageResource(R.drawable.like_unfilled_24);
-        if(plant.isFavorite())
-            like.setImageResource(R.drawable.like_filled_24);
+        if(!PlantMap.getInstance().getFavoritePlantsList().contains(plantCode))
+            like.setImageResource(R.drawable.like_unfilled_48);
         else
-            like.setImageResource(R.drawable.like_unfilled_24);
+            like.setImageResource(R.drawable.like_filled_48);
 
         like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                if(!plant.isFavorite()) {
-                    like.setImageResource(R.drawable.like_filled_24);
+                if(!PlantMap.getInstance().getFavoritePlantsList().contains(plantCode)) {
+                    like.setImageResource(R.drawable.like_filled_48);
                     PlantMap.getInstance().getFavoritePlantsList().add(plantCode);
-                }
+                    Toast.makeText(context, plantname +" added to favorites!", Toast.LENGTH_SHORT).show();
+               }
                 else {
-                    like.setImageResource(R.drawable.like_unfilled_24);
+                    like.setImageResource(R.drawable.like_unfilled_48);
                     PlantMap.getInstance().getFavoritePlantsList().remove(plantCode);
+                    Toast.makeText(context, plantname + " removed from favorites.", Toast.LENGTH_SHORT).show();
                 }
 
-                plant.setFavorite(!plant.isFavorite());
 
             }
         });

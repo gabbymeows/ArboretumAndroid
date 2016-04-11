@@ -331,12 +331,6 @@
                     android:text="Small Text"
                     android:id="@+id/stem" />
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Favorite"
-                    android:id="@+id/favRadioButton" />
-
 
             </LinearLayout>
         </ScrollView>
