@@ -54,6 +54,13 @@
                     android:id="@+id/largePlantImageView"
                     android:layout_gravity="center_horizontal" />
 
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/likeButton"
+                    android:background="@null" />
+
                 <TextView
                     android:layout_marginRight="15dp"
                     android:layout_marginLeft="15dp"
@@ -323,6 +330,12 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Small Text"
                     android:id="@+id/stem" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Favorite"
+                    android:id="@+id/favRadioButton" />
 
 
             </LinearLayout>

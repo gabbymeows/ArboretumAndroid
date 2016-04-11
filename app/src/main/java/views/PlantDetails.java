@@ -5,13 +5,16 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.concurrent.ExecutionException;
@@ -26,7 +29,7 @@ import seniorproject.arboretumapp.R;
  */
 public class PlantDetails {
 
-    public static Dialog getDialog(String plantCode, Context context, View view){
+    public static Dialog getDialog(final String plantCode, Context context, View view){
 
         final Dialog dialog = new Dialog(context);
         //dialog.setContentView(R.layout.plant_detail_view);
@@ -65,7 +68,7 @@ public class PlantDetails {
         //int imageId = workingAdapter.getImageIdFromPosition(position);
 
 
-        Plant plant = PlantMap.getInstance().getPlantMap().get(plantCode);
+        final Plant plant = PlantMap.getInstance().getPlantMap().get(plantCode);
 
         ((TextView) dialog.findViewById(R.id.sciname)).setText(plantname);
         ((TextView) dialog.findViewById(R.id.comname)).setText(plant.getComName());
@@ -146,6 +149,44 @@ public class PlantDetails {
 
 
         plantImage.setImageBitmap(imageLeaves);
+
+        final RadioButton fav = (RadioButton) dialog.findViewById(R.id.favRadioButton);
+
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fav.isChecked()) {
+                    Log.v("yoo", "fav is checked");
+                } else {
+                    Log.v("yoo", "fav is NOT checked");
+                }
+
+            }
+        });
+
+        final ImageButton like = (ImageButton) dialog.findViewById(R.id.likeButton);
+        //like.setImageResource(R.drawable.like_unfilled_24);
+        if(plant.isFavorite())
+            like.setImageResource(R.drawable.like_filled_24);
+        else
+            like.setImageResource(R.drawable.like_unfilled_24);
+
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if(!plant.isFavorite()) {
+                    like.setImageResource(R.drawable.like_filled_24);
+                    PlantMap.getInstance().getFavoritePlantsList().add(plantCode);
+                }
+                else {
+                    like.setImageResource(R.drawable.like_unfilled_24);
+                    PlantMap.getInstance().getFavoritePlantsList().remove(plantCode);
+                }
+
+                plant.setFavorite(!plant.isFavorite());
+
+            }
+        });
 
         //new DownloadImageTask(plantImage).execute(tileClicked.getImageResource());
 

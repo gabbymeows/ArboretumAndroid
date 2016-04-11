@@ -30,6 +30,7 @@ public class PlantMap {
     private HashMap<String, Plant> mPlants;
     private List<String> namesList;
     private HashMap<String, String> nameToCodeMap;
+    private List<String> favoritePlantsList;
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
@@ -45,6 +46,12 @@ public class PlantMap {
     public HashMap<String, Plant> getPlantMap(){
 
         return mPlants;
+    }
+
+    public List<String> getFavoritePlantsList(){
+        if (favoritePlantsList == null)
+            favoritePlantsList = new ArrayList<String>();
+        return favoritePlantsList;
     }
 
     public List<String> getDisplayNamesList(){
