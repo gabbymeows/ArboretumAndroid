@@ -25,7 +25,7 @@ public class GetPlantInfo extends AsyncTask<String, Void, String> {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                 StringBuilder stringBuilder = new StringBuilder();
                 String line;
-                while ((line = bufferedReader.readLine()) != null) {
+                while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
                     //line.replace("[TAB]", "").replace("[ITALIC] {", "").replace("}","").replace("  ", " ").replace("null","");
                     stringBuilder.append(line).append("\n");
                 }

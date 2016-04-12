@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,6 +34,7 @@ import fragments.FavoritesFragment;
 import fragments.PlantDetailsFragment;
 import fragments.PlantGridFragment;
 import fragments.SearchFragment;
+import models.Announcement;
 import models.PlantMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private static Firebase ref;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -50,6 +59,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Firebase.setAndroidContext(this);
+        ref = new Firebase("https://arboretum-admin-dash.firebaseio.com/");
+
+        Firebase.AuthResultHandler authResultHandler = new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData authData) {
+                Log.v("gab", "log in worked");
+            }
+
+            @Override
+            public void onAuthenticationError(FirebaseError firebaseError) {
+                Log.v("gab", "log in failed "+firebaseError.getMessage()+" details: "+firebaseError.getDetails()+" code: "+firebaseError.getCode());
+            }
+
+        };
+
+        ref.authWithPassword("arborapp16@gmail.com", "awesomeplants16", authResultHandler);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -102,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+    public static Firebase getRef(){
+        return ref;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -160,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
             return rootView;
         }
     }
+
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

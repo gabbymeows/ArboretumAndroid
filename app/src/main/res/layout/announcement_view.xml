@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Announcements"
+        android:id="@+id/annTitle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/annList" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Events"
+        android:id="@+id/eventsTitle"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="319dp"
+        android:id="@+id/webViewCalendar" />
+
+
+</LinearLayout>
