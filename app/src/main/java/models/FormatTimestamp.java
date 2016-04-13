@@ -15,7 +15,7 @@ public class FormatTimestamp {
         String month = months[new Integer(t.substring(6,7))-1];
         String day = t.substring(9,10);
 //        if (day.charAt(0) == '0')
-//            day = day.substring(1,1);6  
+//            day = day.substring(1,1);6
 
         String ret = month +" "+day+", "+ year+": ";
         Log.v("yoo2", ret);

@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ public class PlantGridFragment extends Fragment {
     final boolean UPDATE_DATABASE = false;
 
     private static final String ARG_SECTION_NUMBER = "plant_grid_view";
+
+    private Set<String> tilesAdded;
 
 
     @Override
@@ -88,7 +91,7 @@ public class PlantGridFragment extends Fragment {
 
 
             //PlantMap.getInstance().populatePlantMap(getContext());
-
+            tilesAdded = new HashSet<String>();
             System.out.println(names.length);
             if (!UPDATE_DATABASE)
             {
@@ -97,8 +100,10 @@ public class PlantGridFragment extends Fragment {
                     //Log.d("plant_tag", names.names().get(i).toString());
                     String plantCodeName = names[i];
 
-                    tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName).replace("<i>","").replace("</i> x", "").replace("</i>", ""), PlantMap.getInstance().getThumbnail(plantCodeName), plantCodeName) );
-
+                    if(!tilesAdded.contains(plantCodeName) && !plantCodeName.equals("") && plantCodeName != null && !PlantMap.getInstance().getSciName(plantCodeName).equals("")){
+                        tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName).replace("<i>","").replace("</i> x", "").replace("</i>", ""), PlantMap.getInstance().getThumbnail(plantCodeName), plantCodeName) );
+                        tilesAdded.add(plantCodeName);
+                    }
     /*
                     JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(names.names().get(i).toString()).get());
                     StringBuffer imageURL = null;
