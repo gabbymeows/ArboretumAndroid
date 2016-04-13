@@ -24,6 +24,7 @@ import org.w3c.dom.Text;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
     ListView lv;
     ArrayAdapter<String> adapter;
     List<String> announcementList;
+    View rootView;
 
     public HomeFragment() {
     }
@@ -56,7 +58,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View rootView = inflater.inflate(R.layout.announcement_view, container, false);
+        rootView = inflater.inflate(R.layout.announcement_view, container, false);
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat fmt = new SimpleDateFormat("MMM dd, yyyy");
         String strDate = fmt.format(calendar.getTime());
@@ -92,6 +94,12 @@ public class HomeFragment extends Fragment {
 
 
                 }
+                Collections.reverse(getAnns());
+
+                if(adapter != null) {
+                    lv.setAdapter(adapter);
+                    rootView.refreshDrawableState();
+                }
             }
 
             @Override
@@ -107,13 +115,7 @@ public class HomeFragment extends Fragment {
 
 
         lv = (ListView) rootView.findViewById(R.id.annList);
-
-        // Adding items to listview
-        //adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_2, android.R.id.text1, products);
         adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.list_item, R.id.sci_name, announcementList);
-        //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this.getActivity(), R.layout.list_item, R.id.com_name, PlantMap.getInstance().getComName());
-
-
         lv.setAdapter(adapter);
 
         //announcements.setText(announcementList);

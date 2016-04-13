@@ -33,6 +33,7 @@ public class PlantMap {
     private List<String> namesList;
     private HashMap<String, String> nameToCodeMap;
     private Set<String> favoritePlantsList;
+    private List<GridTile> favTiles;
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
@@ -48,6 +49,21 @@ public class PlantMap {
     public HashMap<String, Plant> getPlantMap(){
 
         return mPlants;
+    }
+
+    public List<GridTile> getFavTiles(){
+        if(favTiles == null)
+            favTiles = new ArrayList<GridTile>();
+        return favTiles;
+    }
+
+    public void updateFavGridTiles(){
+        for(GridTile tile : favTiles){
+            String tileCode = tile.getPlantCode();
+            if (!favoritePlantsList.contains(tileCode)){
+                favTiles.remove(tile);
+            }
+        }
     }
 
     public Set<String> getFavoritePlantsList(){

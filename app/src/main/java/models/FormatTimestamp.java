@@ -13,7 +13,7 @@ public class FormatTimestamp {
         String year = t.substring(0,4);
         String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         String month = months[new Integer(t.substring(6,7))-1];
-        String day = t.substring(9,10);
+        String day = t.substring(8,10);
 //        if (day.charAt(0) == '0')
 //            day = day.substring(1,1);6
 

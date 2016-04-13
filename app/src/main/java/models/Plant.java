@@ -359,7 +359,7 @@ public class Plant {
             ArrayList<String> images = new ArrayList<String>();
             for (int i = 0; i < json.getJSONArray("images").length(); i++) {
                 String image = json.getJSONArray("images").get(i).toString();
-                if(this.thumbnail == null ){
+                if(this.thumbnail == null || this.thumbnail.equals("")){
                     this.thumbnail = image;
                 }
                 images.add(image);
