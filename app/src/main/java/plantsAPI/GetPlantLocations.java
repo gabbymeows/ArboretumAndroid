@@ -32,6 +32,10 @@ public class GetPlantLocations extends AsyncTask<Void, Void, String> {
 
                 return stringBuilder.toString();
             }
+            catch(Exception e) {
+                e.printStackTrace();
+                return null;
+            }
             finally{
                 urlConnection.disconnect();
             }

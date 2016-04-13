@@ -21,6 +21,7 @@ import java.util.Set;
 
 import plantsAPI.GetPlantInfo;
 import plantsAPI.GetPlantLocations;
+import seniorproject.arboretumapp.R;
 
 /**
  * Created by dquea on 4/6/2016.
@@ -77,6 +78,7 @@ public class PlantMap {
 
         Log.v("gab", "update started PLANT");
         try {
+
             String a = new GetPlantLocations().execute().get();
             JSONObject jsonObj = new JSONObject(a);
             JSONObject names = jsonObj.getJSONObject("data");
