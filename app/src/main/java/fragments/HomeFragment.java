@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
 
         WebView webView = (WebView) rootView.findViewById(R.id.webViewCalendar);
         webView.getSettings().setJavaScriptEnabled(true);
-        String iframe = "<iframe src=\"https://calendar.google.com/calendar/embed?src=arborapp16%40gmail.com&ctz=America/Chicago\" style=\"border: 0\" width=\"340\" height=\"345\" frameborder=\"0\" scrolling=\"no\"></iframe>";
+        String iframe = "<iframe src=\"https://calendar.google.com/calendar/embed?src=arborapp16%40gmail.com&ctz=America/Chicago\" style=\"border: 0\" width=\"350\" height=\"280\" frameborder=\"0\" scrolling=\"no\"></iframe>";
         webView.loadData(iframe, "text/html", "utf-8");
 
         TextView announcements = (TextView) rootView.findViewById(R.id.a1);
