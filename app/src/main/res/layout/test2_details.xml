@@ -22,6 +22,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Scientific Name"
             android:id="@+id/sciname"
+            android:layout_toRightOf="@+id/closeButton"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -31,6 +32,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Common Name"
             android:id="@+id/comname"
+            android:layout_toRightOf="@+id/closeButton"
             android:layout_below="@+id/sciname"
             android:layout_centerHorizontal="true" />
 
@@ -85,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/descriptionmain" />
 
                 <TextView
@@ -94,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/color" />
 
                 <TextView
@@ -103,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/size" />
 
                 <TextView
@@ -112,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/texture" />
 
                 <TextView
@@ -136,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/habit" />
 
                 <TextView
@@ -160,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/buds" />
 
                 <TextView
@@ -184,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/fruits" />
 
                 <TextView
@@ -232,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/bark" />
 
                 <TextView
@@ -256,7 +258,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/fall" />
 
                 <TextView
@@ -280,7 +282,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/culture" />
 
                 <TextView
@@ -304,7 +306,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/flower" />
 
                 <TextView
@@ -328,7 +330,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
+                    android:text=""
                     android:id="@+id/stem" />
 
 

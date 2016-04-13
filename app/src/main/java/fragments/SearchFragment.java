@@ -42,10 +42,6 @@ public class SearchFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
                 View rootView = inflater.inflate(R.layout.search_view, container, false);
-                // Listview Data
-                String products[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
-                        "iPhone 4S", "Samsung Galaxy Note 800",
-                        "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro"};
 
                 lv = (ListView) rootView.findViewById(R.id.search_view);
                 inputSearch = (EditText) rootView.findViewById(R.id.inputSearch);

@@ -63,6 +63,7 @@ public class GridViewAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.listview_with_image_text, parent, false);
             listViewHolder.textInListView = (TextView)convertView.findViewById(R.id.textView);
             listViewHolder.imageInListView = (ImageView)convertView.findViewById(R.id.imageView);
+            listViewHolder.imageInListView = (ImageView)convertView.findViewById(R.id.imageView);
             convertView.setTag(listViewHolder);
         }else{
             listViewHolder = (ViewHolder)convertView.getTag();
@@ -84,8 +85,6 @@ public class GridViewAdapter extends BaseAdapter {
     public int getImageIdFromPosition(int position){
         return this.context.getResources().getIdentifier(listStorage.get(position).getImageResource(), "drawable", this.context.getPackageName());
     }
-
-
 
     public String getPlantNameFromPosition(int position){
         return listStorage.get(position).getContent();
