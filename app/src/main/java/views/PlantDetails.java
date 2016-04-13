@@ -18,6 +18,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.concurrent.ExecutionException;
 
 import models.Plant;
@@ -122,34 +124,52 @@ public class PlantDetails {
         Bitmap imageFall = null;
         Bitmap imageStem = null;
 
-        try {
-            imageHabit = new DownloadImageTask((ImageView)dialog.findViewById(R.id.habitimage)).execute(plant.getHabit().getImage(0)).get();
-            imageLeaves = new DownloadImageTask((ImageView)dialog.findViewById(R.id.leavesimage)).execute(plant.getLeaves().getImage(0)).get();
-            imageBuds = new DownloadImageTask((ImageView)dialog.findViewById(R.id.budsimage)).execute(plant.getBuds().getImage(0)).get();
-            imageFlower = new DownloadImageTask((ImageView)dialog.findViewById(R.id.flowerimage)).execute(plant.getFlowers().getImage(0)).get();
-            imageFruit = new DownloadImageTask((ImageView)dialog.findViewById(R.id.fruitimage)).execute(plant.getFruits().getImage(0)).get();
-            imageBark = new DownloadImageTask((ImageView)dialog.findViewById(R.id.barkimage)).execute(plant.getBark().getImage(0)).get();
-            imageCulture = new DownloadImageTask((ImageView)dialog.findViewById(R.id.cultureimage)).execute(plant.getCulture().getImage(0)).get();
-            imageFall = new DownloadImageTask((ImageView)dialog.findViewById(R.id.fallimage)).execute(plant.getFallcolor().getImage(0)).get();
-            imageStem = new DownloadImageTask((ImageView)dialog.findViewById(R.id.stemimage)).execute(plant.getStems().getImage(0)).get();
+        //try {
+        if(!plant.getHabit().getImage(0).equals(""))
+            Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView)dialog.findViewById(R.id.habitimage));
+            //imageHabit = new DownloadImageTask((ImageView)dialog.findViewById(R.id.habitimage)).execute(plant.getHabit().getImage(0)).get();
+        if(!plant.getLeaves().getImage(0).equals(""))
+            Picasso.with(context).load(plant.getLeaves().getImage(0)).into((ImageView)dialog.findViewById(R.id.leavesimage));
+            //imageLeaves = new DownloadImageTask((ImageView)dialog.findViewById(R.id.leavesimage)).execute(plant.getLeaves().getImage(0)).get();
+        if(!plant.getBuds().getImage(0).equals(""))
+            Picasso.with(context).load(plant.getBuds().getImage(0)).into((ImageView)dialog.findViewById(R.id.budsimage));
+            //imageBuds = new DownloadImageTask((ImageView)dialog.findViewById(R.id.budsimage)).execute(plant.getBuds().getImage(0)).get();
+        if(!plant.getFlowers().getImage(0).equals(""))
+            Picasso.with(context).load(plant.getFlowers().getImage(0)).into((ImageView)dialog.findViewById(R.id.flowerimage));
+            //imageFlower = new DownloadImageTask((ImageView)dialog.findViewById(R.id.flowerimage)).execute(plant.getFlowers().getImage(0)).get();
+        if(!plant.getFruits().getImage(0).equals(""))
+            Picasso.with(context).load(plant.getFruits().getImage(0)).into((ImageView)dialog.findViewById(R.id.fruitimage));
+           // imageFruit = new DownloadImageTask((ImageView)dialog.findViewById(R.id.fruitimage)).execute(plant.getFruits().getImage(0)).get();
+        if(!plant.getBark().getImage(0).equals(""))
+            Picasso.with(context).load(plant.getBark().getImage(0)).into((ImageView)dialog.findViewById(R.id.barkimage));
+           // imageBark = new DownloadImageTask((ImageView)dialog.findViewById(R.id.barkimage)).execute(plant.getBark().getImage(0)).get();
+        if(!plant.getCulture().getImage(0).equals(""))
+            Picasso.with(context).load(plant.getCulture().getImage(0)).into((ImageView)dialog.findViewById(R.id.cultureimage));
+            //imageCulture = new DownloadImageTask((ImageView)dialog.findViewById(R.id.cultureimage)).execute(plant.getCulture().getImage(0)).get();
+        if(!plant.getFallcolor().getImage(0).equals(""))
+            Picasso.with(context).load(plant.getFallcolor().getImage(0)).into((ImageView)dialog.findViewById(R.id.fallimage));
+            //imageFall = new DownloadImageTask((ImageView)dialog.findViewById(R.id.fallimage)).execute(plant.getFallcolor().getImage(0)).get();
+        if(!plant.getStems().getImage(0).equals(""))
+            Picasso.with(context).load(plant.getStems().getImage(0)).into((ImageView)dialog.findViewById(R.id.stemimage));
+            //imageStem = new DownloadImageTask((ImageView)dialog.findViewById(R.id.stemimage)).execute(plant.getStems().getImage(0)).get();
             //imageHabit = new DownloadImageTask(plantImage).execute(plant.getHabit().getImage(0)).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        ((ImageView)dialog.findViewById(R.id.habitimage)).setImageBitmap(imageHabit);
-        ((ImageView)dialog.findViewById(R.id.leavesimage)).setImageBitmap(imageLeaves);
-        ((ImageView)dialog.findViewById(R.id.budsimage)).setImageBitmap(imageBuds);
-        ((ImageView)dialog.findViewById(R.id.flowerimage)).setImageBitmap(imageFlower);
-        ((ImageView)dialog.findViewById(R.id.fruitimage)).setImageBitmap(imageFruit);
-        ((ImageView)dialog.findViewById(R.id.barkimage)).setImageBitmap(imageBark);
-        ((ImageView)dialog.findViewById(R.id.cultureimage)).setImageBitmap(imageCulture);
-        ((ImageView)dialog.findViewById(R.id.fallimage)).setImageBitmap(imageFall);
-        ((ImageView)dialog.findViewById(R.id.stemimage)).setImageBitmap(imageStem);
+       // } catch (InterruptedException e) {
+        //    e.printStackTrace();
+       // } catch (ExecutionException e) {
+       //     e.printStackTrace();
+       // }
+        //((ImageView)dialog.findViewById(R.id.habitimage)).setImageBitmap(imageHabit);
+        //((ImageView)dialog.findViewById(R.id.leavesimage)).setImageBitmap(imageLeaves);
+        //((ImageView)dialog.findViewById(R.id.budsimage)).setImageBitmap(imageBuds);
+       // ((ImageView)dialog.findViewById(R.id.flowerimage)).setImageBitmap(imageFlower);
+        //((ImageView)dialog.findViewById(R.id.fruitimage)).setImageBitmap(imageFruit);
+        //((ImageView)dialog.findViewById(R.id.barkimage)).setImageBitmap(imageBark);
+        //((ImageView)dialog.findViewById(R.id.cultureimage)).setImageBitmap(imageCulture);
+        //((ImageView)dialog.findViewById(R.id.fallimage)).setImageBitmap(imageFall);
+        //((ImageView)dialog.findViewById(R.id.stemimage)).setImageBitmap(imageStem);
 
 
-        plantImage.setImageBitmap(imageLeaves);
+        //plantImage.setImageBitmap(imageLeaves);
 
 
         final ImageButton like = (ImageButton) dialog.findViewById(R.id.likeButton);
