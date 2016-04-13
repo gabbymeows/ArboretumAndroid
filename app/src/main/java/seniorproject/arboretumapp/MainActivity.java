@@ -1,5 +1,8 @@
 package seniorproject.arboretumapp;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
@@ -26,6 +30,7 @@ import com.firebase.client.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import fragments.MapFragment;
 import fragments.HomeFragment;
@@ -261,4 +266,41 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    @Override
+    protected void onStart()
+    {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+// Add the buttons
+        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                PlantMap.getInstance().updateData(getBaseContext());
+            }
+        });
+        builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+                dialog.dismiss();
+            }
+        });
+        Date lastModified = PlantMap.getInstance().getLastUpdated();
+        if (lastModified == null){
+            builder.setTitle("Uhhhh... this shouldn't happen");
+        }
+        builder.setTitle("Update Plant Database Now?\nLast Updated: " + new SimpleDateFormat("MMM d, yyyy").format(lastModified));
+
+// Set other dialog properties
+
+
+// Create the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        super.onStart();
+
+
+    }
+
+
+
 }
