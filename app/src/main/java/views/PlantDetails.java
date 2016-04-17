@@ -134,8 +134,10 @@ public class PlantDetails {
             ((TextView) dialog.findViewById(R.id.stem)).setText(plant.getStems().getDescription());
 
 
-        if(!plant.getHabit().getImage(0).equals(""))
-            Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView)dialog.findViewById(R.id.habitimage));
+        if(!plant.getHabit().getImage(0).equals("")) {
+            Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView) dialog.findViewById(R.id.habitimage));
+            Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView) dialog.findViewById(R.id.largePlantImageView));
+        }
         if(!plant.getStems().getImage(0).equals("")){
             Picasso.with(context).load(plant.getStems().getImage(0)).into((ImageView)dialog.findViewById(R.id.stemimage));
             Picasso.with(context).load(plant.getStems().getImage(0)).into((ImageView) dialog.findViewById(R.id.largePlantImageView));

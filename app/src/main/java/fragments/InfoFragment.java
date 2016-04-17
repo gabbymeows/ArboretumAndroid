@@ -44,7 +44,7 @@ public class InfoFragment extends Fragment {
         ref.child("app").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                
+
                 String message = "";
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     message = (String) postSnapshot.getValue();

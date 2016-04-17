@@ -16,6 +16,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -55,6 +56,7 @@ public class PlantGridFragment extends Fragment {
     private GridView gridView;
     private GridViewAdapter adapter;
     private GridViewAdapter favAdapter;
+
 
     private static final String ARG_SECTION_NUMBER = "plant_grid_view";
 
@@ -160,6 +162,8 @@ public class PlantGridFragment extends Fragment {
 
             closest = (RadioButton) rootView.findViewById(R.id.closestRadio);
             fav = (RadioButton) rootView.findViewById(R.id.favRadio);
+
+
 
             closest.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         tabHeader1.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.calendar_38, 0, 0);
 
         TextView tabHeader0 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
-        tabHeader0.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.tree_38, 0, 0);
+        tabHeader0.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.con_tree_38, 0, 0);
 
         TextView tabHeader2 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
         tabHeader2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.marker_38, 0, 0);
