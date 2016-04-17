@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -253,8 +254,16 @@ public class PlantMap {
 
     public String getSciName(String code) {
         if (mPlants.get(code) == null){
-            return "Something is wrong";
+            return code;
         }
         else return mPlants.get(code).getSciName();
+    }
+
+    public Date getLastUpdated(){
+        File file = new File("/data/data/seniorproject.arboretumapp/files/data.txt");
+        if (file.exists())
+        return new Date(file.lastModified());
+        return null;
+
     }
 }
