@@ -42,7 +42,7 @@ public class PlantDetails {
         final Dialog dialog = new Dialog(context);
         //dialog.setContentView(R.layout.plant_detail_view);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+        Log.v("gab", "the plant code is "+plantCode);
         final String plantname = PlantMap.getInstance().getPlantMap().get(plantCode).getComName();
 
 //        Display display = ((Activity) getContext()).getWindowManager().getDefaultDisplay();

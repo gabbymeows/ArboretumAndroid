@@ -52,6 +52,10 @@ public class PlantMap {
         return mPlants;
     }
 
+    public void setFavoritePlantsList(Set<String> favs){
+        this.favoritePlantsList = favs;
+    }
+
     public List<GridTile> getFavTiles(){
         if(favTiles == null)
             favTiles = new ArrayList<GridTile>();
@@ -59,11 +63,20 @@ public class PlantMap {
     }
 
     public void updateFavGridTiles(){
-        for(GridTile tile : favTiles){
-            String tileCode = tile.getPlantCode();
+        Iterator<GridTile> it = favTiles.iterator();
+
+        while(it.hasNext()){
+            String tileCode = it.next().getPlantCode();
             if (!favoritePlantsList.contains(tileCode)){
-                favTiles.remove(tile);
+                it.remove();
             }
+        }
+    }
+
+    public void reloadSavedFavs(){
+        this.favTiles = new ArrayList<GridTile>();
+        for(String code: favoritePlantsList){
+            favTiles.add(new GridTile(PlantMap.getInstance().getSciName(code), PlantMap.getInstance().getThumbnail(code), code));
         }
     }
 
