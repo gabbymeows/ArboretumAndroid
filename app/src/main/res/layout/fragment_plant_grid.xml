@@ -68,13 +68,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/closestRadio"
                 android:layout_marginLeft="90dp"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:checked="true" />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/favRadio"
                 android:layout_marginLeft="132dp"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:enabled="true" />
 
 
 

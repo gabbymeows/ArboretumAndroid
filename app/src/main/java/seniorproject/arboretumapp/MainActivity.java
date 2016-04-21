@@ -2,7 +2,10 @@ package seniorproject.arboretumapp;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private static Firebase ref;
+    private static LocationManager locationManager;
     //private Set<String> favoritePlantsList;
 
     /**
@@ -73,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         Firebase.setAndroidContext(this);
         ref = new Firebase("https://arboretum-admin-dash.firebaseio.com/");
@@ -169,6 +175,10 @@ public class MainActivity extends AppCompatActivity {
             Log.v("Saved fav set", ex.getMessage());
         }
         return null;
+    }
+
+    public static LocationManager getLocationManager(){
+        return locationManager;
     }
 
     @Override

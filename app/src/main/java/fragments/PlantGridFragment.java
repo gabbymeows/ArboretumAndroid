@@ -3,8 +3,12 @@ package fragments;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +44,7 @@ import adapters.GridViewAdapter;
 import models.GridTile;
 import models.Plant;
 import models.PlantMap;
+import seniorproject.arboretumapp.MainActivity;
 import seniorproject.arboretumapp.R;
 import plantsAPI.*;
 import views.PlantDetails;
@@ -56,6 +61,9 @@ public class PlantGridFragment extends Fragment {
     private GridView gridView;
     private GridViewAdapter adapter;
     private GridViewAdapter favAdapter;
+    private LocationManager locationManager;
+    private View rootView;
+    private Dialog dialog;
 
 
     private static final String ARG_SECTION_NUMBER = "plant_grid_view";
@@ -75,11 +83,41 @@ public class PlantGridFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        final View rootView = inflater.inflate(R.layout.fragment_plant_grid, container, false);
+        rootView = inflater.inflate(R.layout.fragment_plant_grid, container, false);
         List<GridTile> tiles = new ArrayList<>();
         List<GridTile> favTiles = new ArrayList<>();
 
+        //location listeneing stuff
+        locationManager = MainActivity.getLocationManager();
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
 
+                try {
+                    String a = new GetPlantNames().execute().get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
 
         try {
 
@@ -148,20 +186,18 @@ public class PlantGridFragment extends Fragment {
             // Here we inflate the layout we created above
             gridView = (GridView) rootView.findViewById(R.id.plantgridview);
             adapter = new GridViewAdapter(this.getActivity().getApplicationContext(), tiles);
-            adapter.notifyDataSetChanged();
+            favAdapter = new GridViewAdapter(this.getActivity().getApplicationContext(), favs);
+
+            closest = (RadioButton) rootView.findViewById(R.id.closestRadio);
+            fav = (RadioButton) rootView.findViewById(R.id.favRadio);
+
             gridView.setAdapter(adapter);
+
+            adapter.notifyDataSetChanged();
             gridView.setOnItemClickListener(onListClick);
 
 
 
-//            GridView favGridView = (GridView) rootView.findViewById(R.id.favGridView);
-              favAdapter = new GridViewAdapter(this.getActivity().getApplicationContext(), favs);
-//            favAdapter.notifyDataSetChanged();
-//            favGridView.setAdapter(favAdapter);
-//            favGridView.setOnItemClickListener(onListClick);
-
-            closest = (RadioButton) rootView.findViewById(R.id.closestRadio);
-            fav = (RadioButton) rootView.findViewById(R.id.favRadio);
 
 
 
@@ -208,12 +244,49 @@ public class PlantGridFragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             GridTile tileClicked = ((GridTile) ((parent.getAdapter()).getItem(position)));
-            PlantDetails.getDialog(tileClicked.getPlantCode(), parent.getContext(), parent.getRootView()).show();
+            dialog = PlantDetails.getDialog(gridView, tileClicked.getPlantCode(), parent.getContext(), parent.getRootView());
+            Log.v("gab", "fav size before is " + adapter.getCount());
+            dialog.show();
+
+
+
+            ((Button)dialog.findViewById(R.id.closeButton)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (fav.isChecked()) {
+                        gridView.setAdapter(favAdapter);
+                        gridView.refreshDrawableState();
+                        rootView.refreshDrawableState();
+                        Log.v("gab", "fav is checked");
+                    }
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+
+                    if (fav.isChecked()){
+                        gridView.setAdapter(favAdapter);
+                        gridView.refreshDrawableState();
+                        rootView.refreshDrawableState();
+                        Log.v("gab", "fav is checked");
+                    }
+                }
+            });
 
         }
     };
 
-
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(fav != null && fav.isChecked())
+            gridView.setAdapter(favAdapter);
+        else
+            gridView.setAdapter(adapter);
+    }
 
     private static void downloadDatabase(Context ctx){
 

@@ -12,14 +12,19 @@ import javax.net.ssl.HttpsURLConnection;
 /**
  * Created by dquea on 4/6/2016.
  */
-public class GetPlantLocations extends AsyncTask<Void, Void, String> {
+public class GetPlantLocations extends AsyncTask<String, Void, String> {
     private Exception exception;
 
-    public String doInBackground(Void... urls) {
+    public String doInBackground(String... urls) {
 
 
         try {
-            URL url = new URL("https://www.hort.net/uiplants-api/getObjectLocations?key=lDVPv70zfKus5BxzPT0T2Gw6&mycoords=40.096237,-88.217199&maxdistance=999999999&regexp=");
+            URL url = null;
+            if(urls.length <= 3)
+                url = new URL("https://www.hort.net/uiplants-api/getObjectLocations?key=lDVPv70zfKus5BxzPT0T2Gw6&mycoords=40.096237,-88.217199&maxdistance=999999999&regexp=");
+            else
+                url = new URL("https://www.hort.net/uiplants-api/getObjectLocations?key=lDVPv70zfKus5BxzPT0T2Gw6&mycoords="+urls[0]+","+urls[1]+"&maxdistance="+urls[2]+"&regexp=");
+
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));

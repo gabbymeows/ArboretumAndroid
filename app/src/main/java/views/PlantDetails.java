@@ -14,6 +14,7 @@ import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -37,7 +38,7 @@ import seniorproject.arboretumapp.R;
 public class PlantDetails {
 
     @SuppressWarnings("ResourceType")
-    public static Dialog getDialog(final String plantCode, final Context context, View view){
+    public static Dialog getDialog(GridView gridView, final String plantCode, final Context context, View view){
 
         final Dialog dialog = new Dialog(context);
         //dialog.setContentView(R.layout.plant_detail_view);
@@ -54,6 +55,7 @@ public class PlantDetails {
 //        dialog.getWindow().setLayout((int) .96 * width, (int) .4 * height);
 
         //dialog.setContentView(R.layout.detail_plant_view);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.test2_details);
         //String fixedName = plantname.replace("<i>", "").replace("</i> x", "").replace("</i>", "");
 
