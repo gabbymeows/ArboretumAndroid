@@ -18,8 +18,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="    The University of Illinois Arboretum"
-        android:id="@+id/textView4"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/textView4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,12 +34,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Special thanks to the NCSA and the University of Illinois for their support."
         android:id="@+id/textView5"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp" />
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="9dp" />
 
 
 </LinearLayout>

@@ -14,6 +14,7 @@ import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -37,12 +38,12 @@ import seniorproject.arboretumapp.R;
 public class PlantDetails {
 
     @SuppressWarnings("ResourceType")
-    public static Dialog getDialog(final String plantCode, final Context context, View view){
+    public static Dialog getDialog(GridView gridView, final String plantCode, final Context context, View view){
 
         final Dialog dialog = new Dialog(context);
         //dialog.setContentView(R.layout.plant_detail_view);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+        Log.v("gab", "the plant code is "+plantCode);
         final String plantname = PlantMap.getInstance().getPlantMap().get(plantCode).getComName();
 
 //        Display display = ((Activity) getContext()).getWindowManager().getDefaultDisplay();
@@ -54,6 +55,7 @@ public class PlantDetails {
 //        dialog.getWindow().setLayout((int) .96 * width, (int) .4 * height);
 
         //dialog.setContentView(R.layout.detail_plant_view);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.test2_details);
         //String fixedName = plantname.replace("<i>", "").replace("</i> x", "").replace("</i>", "");
 
@@ -134,8 +136,10 @@ public class PlantDetails {
             ((TextView) dialog.findViewById(R.id.stem)).setText(plant.getStems().getDescription());
 
 
-        if(!plant.getHabit().getImage(0).equals(""))
-            Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView)dialog.findViewById(R.id.habitimage));
+        if(!plant.getHabit().getImage(0).equals("")) {
+            Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView) dialog.findViewById(R.id.habitimage));
+            Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView) dialog.findViewById(R.id.largePlantImageView));
+        }
         if(!plant.getStems().getImage(0).equals("")){
             Picasso.with(context).load(plant.getStems().getImage(0)).into((ImageView)dialog.findViewById(R.id.stemimage));
             Picasso.with(context).load(plant.getStems().getImage(0)).into((ImageView) dialog.findViewById(R.id.largePlantImageView));
