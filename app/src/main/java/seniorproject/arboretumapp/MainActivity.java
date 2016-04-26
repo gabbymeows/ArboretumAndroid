@@ -157,7 +157,42 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            PlantMap.getInstance().updatePlantData(getBaseContext());
+
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+// Add the buttons
+                builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        PlantMap.getInstance().updateData(getBaseContext());
+                    }
+                });
+                builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                        dialog.dismiss();
+                    }
+                });
+                Date lastModified = PlantMap.getInstance().getLastUpdated();
+                if (lastModified == null){
+                    builder.setTitle("Uhhhh... this shouldn't happen");
+                }
+                builder.setTitle("Update Plant Database Now?\nLast Updated: " + new SimpleDateFormat("MMM d, yyyy").format(lastModified));
+
+// Set other dialog properties
+
+
+// Create the AlertDialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+
+
+
+
+
+            //PlantMap.getInstance().updatePlantData(getBaseContext());
             return true;
         }
 
@@ -267,39 +302,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onStart()
-    {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-// Add the buttons
-        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                PlantMap.getInstance().updateData(getBaseContext());
-            }
-        });
-        builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
-                dialog.dismiss();
-            }
-        });
-        Date lastModified = PlantMap.getInstance().getLastUpdated();
-        if (lastModified == null){
-            builder.setTitle("Uhhhh... this shouldn't happen");
-        }
-        builder.setTitle("Update Plant Database Now?\nLast Updated: " + new SimpleDateFormat("MMM d, yyyy").format(lastModified));
-
-// Set other dialog properties
-
-
-// Create the AlertDialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        super.onStart();
-
-
-    }
 
 
 

@@ -32,7 +32,15 @@
         android:layout_marginTop="9dp"
         android:layout_gravity="center_horizontal" />
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Special thanks to the NCSA and the University of Illinois for their support."
+        android:id="@+id/textView5"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp" />
 
 
 </LinearLayout>
