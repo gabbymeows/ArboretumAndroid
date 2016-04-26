@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -64,6 +65,8 @@ public class PlantGridFragment extends Fragment {
     private LocationManager locationManager;
     private View rootView;
     private Dialog dialog;
+    private String lat;
+    private String longi;
 
 
     private static final String ARG_SECTION_NUMBER = "plant_grid_view";
@@ -87,37 +90,7 @@ public class PlantGridFragment extends Fragment {
         List<GridTile> tiles = new ArrayList<>();
         List<GridTile> favTiles = new ArrayList<>();
 
-        //location listeneing stuff
         locationManager = MainActivity.getLocationManager();
-        LocationListener locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-
-                try {
-                    String a = new GetPlantNames().execute().get();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
 
         try {
 
@@ -152,33 +125,10 @@ public class PlantGridFragment extends Fragment {
                         tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName).replace("<i>","").replace("</i> x", "").replace("</i>", ""), PlantMap.getInstance().getThumbnail(plantCodeName), plantCodeName) );
                         tilesAdded.add(plantCodeName);
                     }
-    /*
-                    JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(names.names().get(i).toString()).get());
-                    StringBuffer imageURL = null;
-                    if (plantInfo.getJSONObject("habit").getJSONArray("images").length() > 0) {
-                        imageURL = new StringBuffer(plantInfo.getJSONObject("habit").getJSONArray("images").get(0).toString());
-                    } else if (plantInfo.getJSONObject("flowers").getJSONArray("images").length() > 0) {
-                        imageURL = new StringBuffer(plantInfo.getJSONObject("flowers").getJSONArray("images").get(0).toString());
-                    } else if (plantInfo.getJSONObject("leaves").getJSONArray("images").length() > 0) {
-                        imageURL = new StringBuffer(plantInfo.getJSONObject("leaves").getJSONArray("images").get(0).toString());
-                    } else if (plantInfo.getJSONObject("fruits").getJSONArray("images").length() > 0) {
-                        imageURL = new StringBuffer(plantInfo.getJSONObject("fruits").getJSONArray("images").get(0).toString());
-                    } else {
-                        continue;
-                    }
-
-    */
-
-
                 }
 
             }
 
-
-//            Set<String> favs = PlantMap.getInstance().getFavoritePlantsList();
-//            for (String fav : favs){
-//                favTiles.add(new GridTile(PlantMap.getInstance().getSciName(fav), PlantMap.getInstance().getThumbnail(fav), fav) );
-//            }
 
 
             List<GridTile> favs = PlantMap.getInstance().getFavTiles();
@@ -195,9 +145,6 @@ public class PlantGridFragment extends Fragment {
 
             adapter.notifyDataSetChanged();
             gridView.setOnItemClickListener(onListClick);
-
-
-
 
 
 
@@ -288,25 +235,90 @@ public class PlantGridFragment extends Fragment {
             gridView.setAdapter(adapter);
     }
 
-    private static void downloadDatabase(Context ctx){
+
+    private void getInitialLocation(){
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        String provider = locationManager.getBestProvider(criteria, true);
+        //Location loc = locationManager.requestSingleUpdate(provider, );
 
 
 
-                //JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(names.names().get(i).toString()).get());
-                //plantInfo.getJSONObject("habit").getJSONArray("images").length() > 0
+        final LocationListener initialListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                lat = location.getLatitude()+"";
+                longi = location.getLongitude()+"";
+                Log.v("gab", "yo initial is "+lat+" "+longi);
+                //make api call
+                //update gridview
+                 //turn off listener
 
+            }
 
-        try {
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
 
+            }
 
-                /*
+            @Override
+            public void onProviderEnabled(String provider) {
 
-                */
-        }
-        catch(Exception e){
-            e.printStackTrace();
+            }
 
-        }
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+
+        locationManager.requestLocationUpdates(provider, 0, 0,
+                initialListener);
+        locationManager.removeUpdates(initialListener);
+
+    }
+
+    private void listenForLocationChanges(){
+        //location listeneing stuff
+
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+
+                String lat = location.getLatitude()+"";
+                String longi = location.getLongitude()+"";
+
+                Log.v("gab", lat +" is lat");
+                Log.v("gab", longi +" is long");
+
+                try {
+                    String a = new GetPlantNames().execute().get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 5,
+                locationListener);
 
     }
 
