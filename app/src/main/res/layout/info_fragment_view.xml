@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="    The University of Illinois Arboretum"
+        android:text="The University of Illinois Arboretum"
         android:id="@+id/textView4"
         android:layout_gravity="center_horizontal" />
 
@@ -32,7 +32,26 @@
         android:layout_marginTop="9dp"
         android:layout_gravity="center_horizontal" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=" "
+        android:id="@+id/textView5"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="9dp"
+        android:layout_gravity="center_horizontal" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Special thanks to the NCSA, students of computer science senior project CS 493 class, and the University of Illinois for their support. Images taken by Dr.Gary J. Kling and Chris Lindsey."
+        android:id="@+id/textView11"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="9dp" />
 
 
 </LinearLayout>
