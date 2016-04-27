@@ -3,8 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="seniorproject.arboretumapp.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/update_database"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Update Database"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/update_gridview"
+        android:orderInCategory="100"
+        android:title="Test Sample Coordinates"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/update_gridview2"
+        android:orderInCategory="100"
+        android:title="Test Sample Coordinates 2"
         app:showAsAction="never" />
 </menu>

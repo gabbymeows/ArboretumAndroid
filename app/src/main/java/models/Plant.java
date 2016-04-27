@@ -132,11 +132,11 @@ public class Plant {
             for (int i = 0; i < this.culture.numImages(); i++) {
                 cultureJSON.put(this.culture.getImage(i));
 
-            }/*
+            }
             for (int i = 0; i < this.habit.numImages(); i++){
                 habitJSON.put(this.habit.getImage(i));
             }
-            */
+
 
             json.put("coords", coordsJSON);
 

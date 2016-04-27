@@ -96,4 +96,11 @@ public class GridViewAdapter extends BaseAdapter {
         ImageView imageInListView;
     }
 
+    public void setListStorage(List<GridTile> tiles){
+
+        this.listStorage = tiles;
+        this.notifyDataSetChanged();
+
+    }
+
 }

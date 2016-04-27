@@ -1,5 +1,11 @@
 package seniorproject.arboretumapp;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
@@ -24,8 +31,17 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Set;
 
 import fragments.MapFragment;
 import fragments.HomeFragment;
@@ -49,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private static Firebase ref;
+    private static LocationManager locationManager;
+    //private Set<String> favoritePlantsList;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -59,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         Firebase.setAndroidContext(this);
         ref = new Firebase("https://arboretum-admin-dash.firebaseio.com/");
@@ -96,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         tabHeader1.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.calendar_38, 0, 0);
 
         TextView tabHeader0 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
-        tabHeader0.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.tree_38, 0, 0);
+        tabHeader0.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.con_tree_38, 0, 0);
 
         TextView tabHeader2 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab_header, null);
         tabHeader2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.marker_38, 0, 0);
@@ -128,12 +148,37 @@ public class MainActivity extends AppCompatActivity {
 
         PlantMap.getInstance().populatePlantMap(getBaseContext());
 
+
+        //stuff for loading saved favorites from file
+        Set<String> savedFavs = (Set<String>)loadClassFile(new File(getFilesDir()+"save.bin"));
+        if(savedFavs != null){
+            PlantMap.getInstance().setFavoritePlantsList(savedFavs);
+            PlantMap.getInstance().reloadSavedFavs();
+        }
+
+
     }
 
 
 
     public static Firebase getRef(){
         return ref;
+    }
+
+    public Object loadClassFile(File f){
+        try{
+            ObjectInputStream ois = new ObjectInputStream((new FileInputStream(f)));
+            Object o = ois.readObject();
+            return o;
+        }
+        catch(Exception ex){
+            Log.v("Saved fav set", ex.getMessage());
+        }
+        return null;
+    }
+
+    public static LocationManager getLocationManager(){
+        return locationManager;
     }
 
     @Override
@@ -151,12 +196,63 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            PlantMap.getInstance().updatePlantData(getBaseContext());
+        if (id == R.id.update_database) {
+
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+// Add the buttons
+                builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        PlantMap.getInstance().updateData(getBaseContext());
+                    }
+                });
+                builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                        dialog.dismiss();
+                    }
+                });
+                Date lastModified = PlantMap.getInstance().getLastUpdated();
+                if (lastModified == null){
+                    builder.setTitle("Uhhhh... this shouldn't happen");
+                }
+                builder.setTitle("Update Plant Database Now?\nLast Updated: " + new SimpleDateFormat("MMM d, yyyy").format(lastModified));
+
+// Set other dialog properties
+
+
+// Create the AlertDialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+
+
+
+
+
+            //PlantMap.getInstance().updatePlantData(getBaseContext());
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        if (id == R.id.update_gridview) {
+
+            PlantMap.getInstance().getNearPlants("40.096237", "-88.217199");
+            System.out.println("UPDAING THIS SHIT!");
+
+        }
+        if (id == R.id.update_gridview2) {
+
+            PlantMap.getInstance().getNearPlants("40.096539", "-88.218136");
+            System.out.println("UPDAING THIS SHIT!");
+
+        }
+
+
+
+
+            return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -194,7 +290,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onStop() {
 
+        super.onStop();
+        Set<String> favs = PlantMap.getInstance().getFavoritePlantsList();
+        try{
+            ObjectOutputStream oos = new ObjectOutputStream((new FileOutputStream((new File(getFilesDir()+"save.bin")))));
+            oos.writeObject(favs);
+            oos.flush();
+            oos.close();
+        }
+        catch(FileNotFoundException ex){
+            Log.v("Favs Set", ex.getMessage());
+        }
+        catch(IOException ex){
+            Log.v("Favs Set", ex.getMessage());
+        }
+
+
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -261,4 +376,8 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
+
+
+
 }

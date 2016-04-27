@@ -84,7 +84,7 @@ public class SearchFragment extends Fragment {
             String key = parent.getAdapter().getItem(position).toString();
             HashMap<String, String> plantMap = PlantMap.getInstance().getNameToCodeMap();
 
-            PlantDetails.getDialog(plantMap.get(key), parent.getContext(), view).show();
+            PlantDetails.getDialog(null, plantMap.get(key), parent.getContext(), view).show();
 
         }
     };

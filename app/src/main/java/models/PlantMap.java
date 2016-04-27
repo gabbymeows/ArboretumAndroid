@@ -2,6 +2,9 @@ package models;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 
 import org.json.JSONObject;
 
@@ -11,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -19,8 +23,10 @@ import java.util.Map;
 import java.util.Set;
 
 
+import adapters.GridViewAdapter;
 import plantsAPI.GetPlantInfo;
 import plantsAPI.GetPlantLocations;
+import plantsAPI.GetPlantNames;
 import seniorproject.arboretumapp.R;
 
 /**
@@ -34,6 +40,10 @@ public class PlantMap {
     private HashMap<String, String> nameToCodeMap;
     private Set<String> favoritePlantsList;
     private List<GridTile> favTiles;
+    private List<GridTile> nearTiles;
+    private GridViewAdapter adapter;
+
+
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
@@ -51,6 +61,10 @@ public class PlantMap {
         return mPlants;
     }
 
+    public void setFavoritePlantsList(Set<String> favs){
+        this.favoritePlantsList = favs;
+    }
+
     public List<GridTile> getFavTiles(){
         if(favTiles == null)
             favTiles = new ArrayList<GridTile>();
@@ -58,11 +72,20 @@ public class PlantMap {
     }
 
     public void updateFavGridTiles(){
-        for(GridTile tile : favTiles){
-            String tileCode = tile.getPlantCode();
+        Iterator<GridTile> it = favTiles.iterator();
+
+        while(it.hasNext()){
+            String tileCode = it.next().getPlantCode();
             if (!favoritePlantsList.contains(tileCode)){
-                favTiles.remove(tile);
+                it.remove();
             }
+        }
+    }
+
+    public void reloadSavedFavs(){
+        this.favTiles = new ArrayList<GridTile>();
+        for(String code: favoritePlantsList){
+            favTiles.add(new GridTile(PlantMap.getInstance().getSciName(code), PlantMap.getInstance().getThumbnail(code), code));
         }
     }
 
@@ -253,8 +276,57 @@ public class PlantMap {
 
     public String getSciName(String code) {
         if (mPlants.get(code) == null){
-            return "Something is wrong";
+            return code;
         }
         else return mPlants.get(code).getSciName();
     }
+
+    public Date getLastUpdated(){
+        File file = new File("/data/data/seniorproject.arboretumapp/files/data.txt");
+        if (file.exists())
+        return new Date(file.lastModified());
+        return null;
+
+    }
+
+    public void getNearPlants(String lat, String lon){
+        new GetPlantNames().execute(lat + "," + lon);
+
+    }
+
+
+    public void redrawGridview(){
+        adapter.setListStorage(this.nearTiles);
+
+    }
+
+    public void setNearPlants(ArrayList<String> plants){
+        Set<String> tilesAdded = new HashSet<String>();
+        ArrayList<GridTile> tiles = new ArrayList<GridTile>();
+        for(int i = 0; i < plants.size(); i++) {
+
+            //Log.d("plant_tag", names.names().get(i).toString());
+            String plantCodeName = plants.get(i);
+
+            if(!tilesAdded.contains(plantCodeName) && !plantCodeName.equals("null") && !plantCodeName.equals("") && plantCodeName != null && !PlantMap.getInstance().getSciName(plantCodeName).equals("")){
+                tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName).replace("<i>","").replace("</i> x", "").replace("</i>", ""), PlantMap.getInstance().getThumbnail(plantCodeName), plantCodeName));
+                tilesAdded.add(plantCodeName);
+            }
+        }
+
+        this.nearTiles = tiles;
+    }
+
+
+    public List<GridTile> getNearTiles(){
+        if(nearTiles == null)
+            nearTiles = new ArrayList<GridTile>();
+        return nearTiles;
+    }
+
+    public void setAdapter(GridViewAdapter adapter){
+        this.adapter = adapter;
+    }
+
+
 }
