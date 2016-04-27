@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.update_database) {
 
 
 
@@ -236,7 +236,17 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        if (id == R.id.update_gridview) {
+
+            PlantMap.getInstance().getNearPlants("40.096237", "-88.217199");
+            System.out.println("UPDAING THIS SHIT!");
+
+        }
+
+
+
+
+            return super.onOptionsItemSelected(item);
     }
 
     /**

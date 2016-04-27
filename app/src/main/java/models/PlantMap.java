@@ -2,6 +2,9 @@ package models;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 
 import org.json.JSONObject;
 
@@ -20,8 +23,10 @@ import java.util.Map;
 import java.util.Set;
 
 
+import adapters.GridViewAdapter;
 import plantsAPI.GetPlantInfo;
 import plantsAPI.GetPlantLocations;
+import plantsAPI.GetPlantNames;
 import seniorproject.arboretumapp.R;
 
 /**
@@ -35,6 +40,10 @@ public class PlantMap {
     private HashMap<String, String> nameToCodeMap;
     private Set<String> favoritePlantsList;
     private List<GridTile> favTiles;
+    private List<GridTile> nearTiles;
+    private GridViewAdapter adapter;
+    private GridView workingGrid;
+    private View rootview;
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
@@ -278,5 +287,53 @@ public class PlantMap {
         return new Date(file.lastModified());
         return null;
 
+    }
+
+    public void getNearPlants(String lat, String lon){
+        new GetPlantNames().execute(lat + "," + lon);
+
+    }
+
+
+    public void redrawGridview(){
+        adapter.setListStorage(this.nearTiles);
+
+    }
+
+    public void setNearPlants(ArrayList<String> plants){
+        Set<String> tilesAdded = new HashSet<String>();
+        ArrayList<GridTile> tiles = new ArrayList<GridTile>();
+        for(int i = 0; i < plants.size(); i++) {
+
+            //Log.d("plant_tag", names.names().get(i).toString());
+            String plantCodeName = plants.get(i);
+
+            if(!tilesAdded.contains(plantCodeName) && !plantCodeName.equals("null") && !plantCodeName.equals("") && plantCodeName != null && !PlantMap.getInstance().getSciName(plantCodeName).equals("")){
+                tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName).replace("<i>","").replace("</i> x", "").replace("</i>", ""), PlantMap.getInstance().getThumbnail(plantCodeName), plantCodeName));
+                tilesAdded.add(plantCodeName);
+            }
+        }
+
+        this.nearTiles = tiles;
+    }
+
+    public void setGridView(GridView view){
+        this.workingGrid = view;
+    }
+    public GridView getGridView(){
+        return this.workingGrid;
+    }
+
+    public List<GridTile> getNearTiles(){
+        if(nearTiles == null)
+            nearTiles = new ArrayList<GridTile>();
+        return nearTiles;
+    }
+
+    public void setAdapter(GridViewAdapter adapter){
+        this.adapter = adapter;
+    }
+    public void setRootView(View v){
+        this.rootview = v;
     }
 }

@@ -86,14 +86,15 @@ public class PlantGridFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+
         rootView = inflater.inflate(R.layout.fragment_plant_grid, container, false);
-        List<GridTile> tiles = new ArrayList<>();
-        List<GridTile> favTiles = new ArrayList<>();
+
 
         locationManager = MainActivity.getLocationManager();
+        getInitialLocation();
 
         try {
-
+/*
             String a = new GetPlantNames().execute().get();
 
             JSONObject jsonObj = new JSONObject(a);
@@ -128,14 +129,19 @@ public class PlantGridFragment extends Fragment {
                 }
 
             }
-
+*/
 
 
             List<GridTile> favs = PlantMap.getInstance().getFavTiles();
+            List<GridTile> tiles = PlantMap.getInstance().getNearTiles();
 
             // Here we inflate the layout we created above
             gridView = (GridView) rootView.findViewById(R.id.plantgridview);
+            PlantMap.getInstance().setGridView(gridView);
+
+            PlantMap.getInstance().setRootView(rootView);
             adapter = new GridViewAdapter(this.getActivity().getApplicationContext(), tiles);
+            PlantMap.getInstance().setAdapter(adapter);
             favAdapter = new GridViewAdapter(this.getActivity().getApplicationContext(), favs);
 
             closest = (RadioButton) rootView.findViewById(R.id.closestRadio);
@@ -239,6 +245,7 @@ public class PlantGridFragment extends Fragment {
     private void getInitialLocation(){
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
+
         String provider = locationManager.getBestProvider(criteria, true);
         //Location loc = locationManager.requestSingleUpdate(provider, );
 
@@ -274,6 +281,12 @@ public class PlantGridFragment extends Fragment {
 
         locationManager.requestLocationUpdates(provider, 0, 0,
                 initialListener);
+
+        Location currLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        lat = currLocation.getLatitude()+"";
+        longi = currLocation.getLongitude()+"";
+        Log.v("gab", "yo initial is " + lat + " " + longi);
+
         locationManager.removeUpdates(initialListener);
 
     }
@@ -317,9 +330,11 @@ public class PlantGridFragment extends Fragment {
             }
         };
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 5,
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0,
                 locationListener);
 
     }
+
+
 
 }
