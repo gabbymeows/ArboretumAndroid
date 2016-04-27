@@ -242,6 +242,12 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("UPDAING THIS SHIT!");
 
         }
+        if (id == R.id.update_gridview2) {
+
+            PlantMap.getInstance().getNearPlants("40.096539", "-88.218136");
+            System.out.println("UPDAING THIS SHIT!");
+
+        }
 
 
 
