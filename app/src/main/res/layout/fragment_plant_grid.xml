@@ -45,15 +45,15 @@
                 android:text="Closest"
                 android:layout_marginLeft="81dp"
                 android:id="@+id/textView10"
-                android:layout_gravity="right|bottom" />
+                android:layout_gravity="bottom|center|right" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Favorites"
                 android:id="@+id/textView9"
-                android:layout_marginLeft="114dp"
-                android:layout_gravity="right|bottom" />
+                android:layout_marginLeft="115dp"
+                android:layout_gravity="right|bottom|center" />
         </LinearLayout>
         <RadioGroup
 
