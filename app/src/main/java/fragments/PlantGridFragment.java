@@ -137,9 +137,6 @@ public class PlantGridFragment extends Fragment {
 
             // Here we inflate the layout we created above
             gridView = (GridView) rootView.findViewById(R.id.plantgridview);
-            PlantMap.getInstance().setGridView(gridView);
-
-            PlantMap.getInstance().setRootView(rootView);
             adapter = new GridViewAdapter(this.getActivity().getApplicationContext(), tiles);
             PlantMap.getInstance().setAdapter(adapter);
             favAdapter = new GridViewAdapter(this.getActivity().getApplicationContext(), favs);

@@ -42,8 +42,8 @@ public class PlantMap {
     private List<GridTile> favTiles;
     private List<GridTile> nearTiles;
     private GridViewAdapter adapter;
-    private GridView workingGrid;
-    private View rootview;
+
+
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
@@ -317,12 +317,6 @@ public class PlantMap {
         this.nearTiles = tiles;
     }
 
-    public void setGridView(GridView view){
-        this.workingGrid = view;
-    }
-    public GridView getGridView(){
-        return this.workingGrid;
-    }
 
     public List<GridTile> getNearTiles(){
         if(nearTiles == null)
@@ -333,7 +327,6 @@ public class PlantMap {
     public void setAdapter(GridViewAdapter adapter){
         this.adapter = adapter;
     }
-    public void setRootView(View v){
-        this.rootview = v;
-    }
+
+
 }
