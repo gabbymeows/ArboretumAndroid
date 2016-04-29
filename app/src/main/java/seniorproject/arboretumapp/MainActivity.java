@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private static Firebase ref;
     private static LocationManager locationManager;
+    private static int radius;
     //private Set<String> favoritePlantsList;
 
     /**
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        radius = 100;
         setContentView(R.layout.activity_main);
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -236,18 +238,40 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id._15){
+            this.radius = 15;
+        }
+
+        if (id == R.id._25){
+            radius = 25;
+        }
+
+        if (id == R.id._50){
+            radius = 50;
+        }
+
+        if (id == R.id._100){
+            radius = 100;
+        }
+
+        if (id == R.id._200){
+            radius = 200;
+        }
+
+
+
         if (id == R.id.update_gridview) {
 
             PlantMap.getInstance().getNearPlants("40.096237", "-88.217199");
             System.out.println("UPDAING THIS SHIT!");
 
         }
-        if (id == R.id.update_gridview2) {
-
-            PlantMap.getInstance().getNearPlants("40.096539", "-88.218136");
-            System.out.println("UPDAING THIS SHIT!");
-
-        }
+//        if (id == R.id.update_gridview2) {
+//
+//            PlantMap.getInstance().getNearPlants("40.096539", "-88.218136");
+//            System.out.println("UPDAING THIS SHIT!");
+//
+//        }
 
 
 
@@ -378,6 +402,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public static void setRadius(int radius){
+        radius = radius;
+    }
+
+    public static int getRadius(){
+        return radius;
+    }
 
 
 }

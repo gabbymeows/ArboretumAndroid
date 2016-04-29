@@ -12,9 +12,54 @@
         android:orderInCategory="100"
         android:title="Test Sample Coordinates"
         app:showAsAction="never" />
+    <!--
     <item
         android:id="@+id/update_gridview2"
         android:orderInCategory="100"
         android:title="Test Sample Coordinates 2"
         app:showAsAction="never" />
+        -->
+    <item
+        android:id="@+id/_15"
+        android:orderInCategory="100"
+        android:title="15 ft"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/_25"
+        android:orderInCategory="100"
+        android:title="25 ft"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/_50"
+        android:orderInCategory="100"
+        android:title="50 ft"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/_100"
+        android:orderInCategory="100"
+        android:title="100 ft"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/_200"
+        android:orderInCategory="100"
+        android:title="200 ft"
+        app:showAsAction="never" />
+<!---
+   <item
+        android:id="@+id/sec_1"
+        android:orderInCategory="100"
+        android:title="1 sec"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/sec_3"
+        android:orderInCategory="100"
+        android:title="3 sec"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/sec_5"
+        android:orderInCategory="100"
+        android:title="5 sec"
+        app:showAsAction="never" />
+
+-->
 </menu>

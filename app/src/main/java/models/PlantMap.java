@@ -130,8 +130,6 @@ public class PlantMap {
                 Plant currPlant = mPlants.get(code);
                 if (currPlant == null) {
                     Plant newplant = new Plant(code, plantData.get("coords").toString());
-
-                    //.replace("[ITALIC]", "").replace("[TAB]", "")
                     JSONObject plantInfo = new JSONObject(new GetPlantInfo().execute(code).get());
                     newplant.getFeaturesFromJson(plantInfo);
                     mPlants.put(code, newplant);
@@ -199,8 +197,6 @@ public class PlantMap {
             getInstance().updatePlantData(ctx);
         }
         else{
-
-            //getInstance().updatePlantData(ctx);
             getInstance().readPlantDataFromFile();
         }
 
@@ -268,9 +264,6 @@ public class PlantMap {
                 return "http://plantgenera.org/ILLUSTRATIONS_thumbnails/159888.jpg";
             else return image;
         }
-
-
-
     }
 
 
@@ -301,20 +294,18 @@ public class PlantMap {
     }
 
     public void setNearPlants(ArrayList<String> plants){
+
         Set<String> tilesAdded = new HashSet<String>();
         ArrayList<GridTile> tiles = new ArrayList<GridTile>();
         for(int i = 0; i < plants.size(); i++) {
-
-            //Log.d("plant_tag", names.names().get(i).toString());
             String plantCodeName = plants.get(i);
-
             if(!tilesAdded.contains(plantCodeName) && !plantCodeName.equals("null") && !plantCodeName.equals("") && plantCodeName != null && !PlantMap.getInstance().getSciName(plantCodeName).equals("")){
                 tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName).replace("<i>","").replace("</i> x", "").replace("</i>", ""), PlantMap.getInstance().getThumbnail(plantCodeName), plantCodeName));
                 tilesAdded.add(plantCodeName);
             }
         }
-
         this.nearTiles = tiles;
+
     }
 
 

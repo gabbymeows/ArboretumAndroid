@@ -47,6 +47,15 @@ public class SearchFragment extends Fragment {
                 inputSearch = (EditText) rootView.findViewById(R.id.inputSearch);
                 HashMap<String, String> displayNames = PlantMap.getInstance().getNameToCodeMap();
 
+
+            List<String> names = PlantMap.getInstance().getDisplayNamesList();
+            StringBuffer sb = new StringBuffer();
+            for(String n : names){
+                sb.append(n+"\n");
+            }
+
+            Log.v("gabby", sb.toString());
+
                 // Adding items to listview
                 //adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_2, android.R.id.text1, products);
                 adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.list_item, R.id.sci_name, PlantMap.getInstance().getDisplayNamesList());
