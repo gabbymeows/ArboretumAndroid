@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ArboretumAndroid.iml" filepath="$PROJECT_DIR$/ArboretumAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ArboretumAndroidPresentation.iml" filepath="$PROJECT_DIR$/ArboretumAndroidPresentation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

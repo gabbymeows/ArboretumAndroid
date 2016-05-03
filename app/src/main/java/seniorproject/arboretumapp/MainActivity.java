@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        radius = 100;
+        radius = 500;
         setContentView(R.layout.activity_main);
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -266,12 +266,12 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("UPDAING THIS SHIT!");
 
         }
-//        if (id == R.id.update_gridview2) {
-//
-//            PlantMap.getInstance().getNearPlants("40.096539", "-88.218136");
-//            System.out.println("UPDAING THIS SHIT!");
-//
-//        }
+        if (id == R.id.update_gridview2) {
+
+            PlantMap.getInstance().getNearPlants("40.096539", "-88.218136");
+            System.out.println("UPDAING THIS SHIT!");
+
+        }
 
 
 

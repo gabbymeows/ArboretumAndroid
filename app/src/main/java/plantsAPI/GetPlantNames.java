@@ -66,7 +66,7 @@ public class GetPlantNames extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String nearbyPlants) {
         try {
             JSONObject jsonObj = new JSONObject(nearbyPlants);
-
+            jsonObj = jsonObj.getJSONObject("data");
             ArrayList<String> names = new ArrayList<String>();
             Iterator<String> it = jsonObj.keys();
             for (int i = 0; i < jsonObj.length(); i++) {
