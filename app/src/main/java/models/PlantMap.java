@@ -42,6 +42,7 @@ public class PlantMap {
     private List<GridTile> favTiles;
     private List<GridTile> nearTiles;
     private GridViewAdapter adapter;
+    private HashMap<String, Integer> nearPlantsCount;
 
 
 
@@ -295,17 +296,26 @@ public class PlantMap {
 
     public void setNearPlants(ArrayList<String> plants){
 
-        Set<String> tilesAdded = new HashSet<String>();
+        HashMap<String, Integer> tilesAdded = new HashMap<String, Integer>();
         ArrayList<GridTile> tiles = new ArrayList<GridTile>();
         for(int i = 0; i < plants.size(); i++) {
             String plantCodeName = plants.get(i);
-            if(!tilesAdded.contains(plantCodeName) && !plantCodeName.equals("null") && !plantCodeName.equals("") && plantCodeName != null && !PlantMap.getInstance().getSciName(plantCodeName).equals("")){
-                tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName).replace("<i>","").replace("</i> x", "").replace("</i>", ""), PlantMap.getInstance().getThumbnail(plantCodeName), plantCodeName));
-                tilesAdded.add(plantCodeName);
+            if(!plantCodeName.equals("null") && !plantCodeName.equals("") && plantCodeName != null && !PlantMap.getInstance().getSciName(plantCodeName).equals("")){
+
+                Integer timesAdded = tilesAdded.get(plantCodeName);
+
+                if (timesAdded == null ){
+                    tiles.add(new GridTile(PlantMap.getInstance().getSciName(plantCodeName).replace("<i>","").replace("</i> x", "").replace("</i>", ""), PlantMap.getInstance().getThumbnail(plantCodeName), plantCodeName));
+                    tilesAdded.put(plantCodeName, 1);
+                }
+                else {
+                    tilesAdded.put(plantCodeName, timesAdded.intValue()+1);
+                }
+
             }
         }
         this.nearTiles = tiles;
-
+        this.nearPlantsCount = tilesAdded;
     }
 
 
@@ -319,5 +329,16 @@ public class PlantMap {
         this.adapter = adapter;
     }
 
+    public int getPlantCount(String plant){
+
+        Integer count = this.nearPlantsCount.get(plant);
+        if(count == null){
+            return 0;
+        }
+        else{
+            return count.intValue();
+
+        }
+    }
 
 }
