@@ -209,9 +209,9 @@ public class PlantGridFragment extends Fragment {
 
     private void startLocationListening(){
         if(locationManager != null && locationListener != null) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4000, 0,
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0,
                     locationListener);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 4000, 0,
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0,
                     locationListener);
             Log.v("gab", "starting location listen");
         }

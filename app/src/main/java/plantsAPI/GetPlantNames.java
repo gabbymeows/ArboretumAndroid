@@ -38,6 +38,7 @@ public class GetPlantNames extends AsyncTask<String, Void, String> {
             }
 
             URL url = new URL("https://www.hort.net/uiplants-api/getObjectLocations?key=lDVPv70zfKus5BxzPT0T2Gw6&mycoords="+ latlon +"&maxdistance="+ radius+"&categoryregexp=plant");
+            Log.v("asdf", url.toString());
             //URL url = new URL("https://www.hort.net/uiplants-api/getNearObjects?key=7Vek7WIbv9FqPoKxjD7AriIj&mycoords=40.096237,-88.217199&maxdistance=500&categoryregexp=plant");
             Log.v("gab", url.toString());
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
@@ -66,7 +67,7 @@ public class GetPlantNames extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String nearbyPlants) {
         try {
             JSONObject jsonObj = new JSONObject(nearbyPlants);
-
+            jsonObj = jsonObj.getJSONObject("data");
             ArrayList<String> names = new ArrayList<String>();
             Iterator<String> it = jsonObj.keys();
             for (int i = 0; i < jsonObj.length(); i++) {
