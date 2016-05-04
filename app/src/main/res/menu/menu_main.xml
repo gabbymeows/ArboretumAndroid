@@ -44,6 +44,11 @@
         android:orderInCategory="100"
         android:title="200 ft"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/seekbar"
+        android:orderInCategory="100"
+        android:title="Seekbar"
+        app:showAsAction="never" />
 <!---
    <item
         android:id="@+id/sec_1"

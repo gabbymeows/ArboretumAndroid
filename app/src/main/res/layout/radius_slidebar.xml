@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/your_dialog_root_element"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TextView
+            android:id="@+id/RADIUStextViewProgressID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="Range 15ft"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <SeekBar
+            android:id="@+id/RADIUSseekBarID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+
+            android:layout_marginTop="26dp"
+            android:max="4" >
+        </SeekBar>
+
+        <TextView
+            android:id="@+id/RADIUSinitialvaluetextID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/RADIUSseekBarID"
+            android:text="15ft" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/PRICEinitialvaluetextID2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/RADIUSseekBarID"
+            android:text="200ft" />
+    </RelativeLayout>
