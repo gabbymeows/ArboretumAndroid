@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.Window;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private static Firebase ref;
     private static LocationManager locationManager;
     private static int radius;
+    SeekBar yourDialogSeekBar;
     //private Set<String> favoritePlantsList;
 
     /**
@@ -71,7 +73,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        radius = 500;
+        if(yourDialogSeekBar == null)
+            radius = 75;
+        else
+            radius = yourDialogSeekBar.getProgress()+15;
         setContentView(R.layout.activity_main);
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -131,16 +136,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setCustomView(tabHeader2);
         tabLayout.getTabAt(3).setCustomView(tabHeader3);
         tabLayout.getTabAt(4).setCustomView(tabHeader4);
-        //tabLayout.getTabAt(5).setCustomView(tabHeader5);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         PlantMap.getInstance().populatePlantMap(getBaseContext());
 
@@ -226,59 +221,21 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id._15){
-            this.radius = 15;
-        }
-
-        if (id == R.id._25){
-            radius = 25;
-        }
-
-        if (id == R.id._50){
-            radius = 50;
-        }
-
-        if (id == R.id._100){
-            radius = 100;
-        }
-
-        if (id == R.id._200){
-            radius = 200;
-        }
 
         if (id == R.id.seekbar){
 
-            Dialog yourDialog = new Dialog(this);
+            final Dialog yourDialog = new Dialog(this);
             yourDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
             final View layout = inflater.inflate(R.layout.radius_slidebar, (ViewGroup)findViewById(R.id.your_dialog_root_element));
             yourDialog.setContentView(layout);
 
-            SeekBar yourDialogSeekBar = (SeekBar)layout.findViewById(R.id.RADIUSseekBarID);
-            int progress = 0;
-            switch(getRadius()){
-                case 25:
-                    progress =1;
-                    ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 25ft");
-                    break;
-                case 50:
-                    progress =2;
-                    ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 50ft");
-                    break;
-                case 100:
-                    progress =3;
-                    ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 100ft");
-                    break;
-                case 200:
-                    progress =4;
-                    ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 200ft");
-                    break;
-                default:
-                    progress =0;
-                    ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 15ft");
-                    break;
-            }
-            yourDialogSeekBar.setProgress(progress);
+            yourDialogSeekBar = (SeekBar)layout.findViewById(R.id.RADIUSseekBarID);
+            yourDialogSeekBar.incrementProgressBy(1);
+            yourDialogSeekBar.setMax(185);
+            yourDialogSeekBar.setProgress(getRadius() - 15);
+            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: " + radius + " feet");
+            yourDialogSeekBar.setSaveEnabled(true);
             SeekBar.OnSeekBarChangeListener yourSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
@@ -287,59 +244,73 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-                    //add code here
+
                 }
 
                 @Override
                 public void onProgressChanged(SeekBar seekBark, int progress, boolean fromUser) {
-                    switch(progress){
-                        case 0:
-                            MainActivity.setRadius(15);
-                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 15ft");
-                            break;
-                        case 1:
-                            MainActivity.setRadius(25);
-                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 25ft");
-                            break;
-                        case 2:
-                            MainActivity.setRadius(50);
-                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 50ft");
-                            break;
-                        case 3:
-                            MainActivity.setRadius(100);
-                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 100ft");
-                            break;
-                        case 4:
-                            MainActivity.setRadius(200);
-                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 200ft");
-                            break;
-                        default:
-                            MainActivity.setRadius(200);
-                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 200ft");
-                            break;
+                    ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: "+(progress+15)+" feet");
+//
+// switch(progress){
+//                        case 0:
+//                            MainActivity.setRadius(15);
+//                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 15ft");
+//                            break;
+//                        case 1:
+//                            MainActivity.setRadius(25);
+//                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 25ft");
+//                            break;
+//                        case 2:
+//                            MainActivity.setRadius(50);
+//                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 50ft");
+//                            break;
+//                        case 3:
+//                            MainActivity.setRadius(100);
+//                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 100ft");
+//                            break;
+//                        case 4:
+//                            MainActivity.setRadius(200);
+//                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 200ft");
+//                            break;
+//                        default:
+//                            MainActivity.setRadius(200);
+//                            ((TextView)layout.findViewById(R.id.RADIUStextViewProgressID)).setText("Radius: 200ft");
+//                            break;
+//
+//                    }
+                    MainActivity.setRadius(seekBark.getProgress()+15);
 
-                    }
                 }
             };
             yourDialogSeekBar.setOnSeekBarChangeListener(yourSeekBarListener);
 
             yourDialog.show();
-        }
 
+            Button closeButton = (Button) yourDialog.findViewById(R.id.closeButton);
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    yourDialog.dismiss();
 
-
-        if (id == R.id.update_gridview) {
-
-            PlantMap.getInstance().getNearPlants("40.096237", "-88.217199");
-            System.out.println("UPDAING THIS SHIT!");
-
-        }
-        if (id == R.id.update_gridview2) {
-
-            PlantMap.getInstance().getNearPlants("40.096539", "-88.218136");
-            System.out.println("UPDAING THIS SHIT!");
+                }
+            });
 
         }
+
+
+//
+//        if (id == R.id.update_gridview) {
+//
+//            PlantMap.getInstance().getNearPlants("40.096237", "-88.217199");
+//            System.out.println("UPDAING THIS SHIT!");
+//
+//        }
+//        if (id == R.id.update_gridview2) {
+//
+//            PlantMap.getInstance().getNearPlants("40.096539", "-88.218136");
+//            System.out.println("UPDAING THIS SHIT!");
+//
+//        }
 
 
 

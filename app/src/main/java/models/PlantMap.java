@@ -48,6 +48,7 @@ public class PlantMap {
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
+        this.nearPlantsCount = new HashMap<String, Integer>();
     }
 
     public static PlantMap getInstance(){
@@ -99,7 +100,10 @@ public class PlantMap {
     public List<String> getDisplayNamesList(){
         namesList = new ArrayList<String>();
         for( Plant p : mPlants.values()){
-            namesList.add(p.getSciName() + " (" + p.getComName() + ")");
+            if(!p.getComName().equals(""))
+                namesList.add(p.getSciName() + " (" + p.getComName() + ")");
+            else
+                namesList.add(p.getSciName());
         }
 
         return namesList;
@@ -114,7 +118,7 @@ public class PlantMap {
         return nameToCodeMap;
     }
 
-    public void updatePlantData(Context ctx){
+    public void updatePlantData(Context ctx)   {
 
         Log.v("gab", "update started PLANT");
         try {
