@@ -2,9 +2,12 @@ package seniorproject.arboretumapp;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.location.LocationManager;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private static LocationManager locationManager;
     private static int radius;
     SeekBar yourDialogSeekBar;
+    private static Context mainContext;
     //private Set<String> favoritePlantsList;
 
     /**
@@ -78,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         else
             radius = yourDialogSeekBar.getProgress()+15;
         setContentView(R.layout.activity_main);
-
+        mainContext = this;
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         Firebase.setAndroidContext(this);
@@ -137,7 +141,14 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(3).setCustomView(tabHeader3);
         tabLayout.getTabAt(4).setCustomView(tabHeader4);
 
-        PlantMap.getInstance().populatePlantMap(getBaseContext());
+        if(!PlantMap.getInstance().cacheExists()){
+            ProgressDialog pd = ProgressDialog.show(MainActivity.this,"Downloading Plant Database", "Downloading...", true, false);
+            updateThread searchThread = new updateThread(pd);
+            searchThread.start();
+        }
+        else{
+            PlantMap.getInstance().readPlantDataFromFile();
+        }
 
 
         //stuff for loading saved favorites from file
@@ -195,7 +206,14 @@ public class MainActivity extends AppCompatActivity {
 // Add the buttons
                 builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        PlantMap.getInstance().updateData(getBaseContext());
+                        dialog.dismiss();
+
+                        ProgressDialog pd = ProgressDialog.show(MainActivity.this,"Update Plant Database", "Updating...", true, false);
+                        updateThread searchThread = new updateThread(pd);
+                        searchThread.start();
+                        //PlantMap.getInstance().updateData();
+
+
                     }
                 });
                 builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -449,5 +467,29 @@ public class MainActivity extends AppCompatActivity {
         return radius;
     }
 
+    public static Context getMainContext() {return mainContext;}
+
+    private class updateThread extends Thread {
+
+        private ProgressDialog pd;
+
+        public updateThread(ProgressDialog pd2) {
+            this.pd = pd2;
+        }
+
+        @Override
+        public void run() {
+            PlantMap.getInstance().updateData();
+            handler.sendEmptyMessage(0);
+        }
+
+        private Handler handler = new Handler() {
+
+            @Override
+            public void handleMessage(Message msg) {
+                pd.dismiss();
+            }
+        };
+    }
 
 }
