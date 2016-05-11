@@ -12,13 +12,13 @@
         android:orderInCategory="100"
         android:title="Test Sample Coordinates"
         app:showAsAction="never" />
-    <!--
+
     <item
         android:id="@+id/update_gridview2"
         android:orderInCategory="100"
         android:title="Test Sample Coordinates 2"
         app:showAsAction="never" />
-        -->
+
     <item
         android:id="@+id/_15"
         android:orderInCategory="100"
@@ -43,6 +43,11 @@
         android:id="@+id/_200"
         android:orderInCategory="100"
         android:title="200 ft"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/seekbar"
+        android:orderInCategory="100"
+        android:title="Seekbar"
         app:showAsAction="never" />
 <!---
    <item
