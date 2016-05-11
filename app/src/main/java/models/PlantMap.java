@@ -43,11 +43,13 @@ public class PlantMap {
     private List<GridTile> nearTiles;
     private GridViewAdapter adapter;
     private HashMap<String, Integer> nearPlantsCount;
+    private HashMap<String, Map<String, Feature>> plantsFeaturesMaps;
 
 
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
+        this.nearPlantsCount = new HashMap<String, Integer>();
     }
 
     public static PlantMap getInstance(){
@@ -60,6 +62,12 @@ public class PlantMap {
     public HashMap<String, Plant> getPlantMap(){
 
         return mPlants;
+    }
+
+    public Map<String, Map<String, Feature>> getPlantsFeaturesMaps(){
+        if (this.plantsFeaturesMaps == null)
+            this.plantsFeaturesMaps = new HashMap<String, Map<String, Feature>>();
+        return this.plantsFeaturesMaps;
     }
 
     public void setFavoritePlantsList(Set<String> favs){
@@ -99,7 +107,10 @@ public class PlantMap {
     public List<String> getDisplayNamesList(){
         namesList = new ArrayList<String>();
         for( Plant p : mPlants.values()){
-            namesList.add(p.getSciName() + " (" + p.getComName() + ")");
+            if(!p.getComName().equals(""))
+                namesList.add(p.getSciName() + " (" + p.getComName() + ")");
+            else
+                namesList.add(p.getSciName());
         }
 
         return namesList;
@@ -114,7 +125,7 @@ public class PlantMap {
         return nameToCodeMap;
     }
 
-    public void updatePlantData(Context ctx){
+    public void updatePlantData(Context ctx)   {
 
         Log.v("gab", "update started PLANT");
         try {
