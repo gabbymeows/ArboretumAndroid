@@ -6,7 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dquea on 4/5/2016.
@@ -28,6 +30,7 @@ public class Plant {
     private Feature culture;
     private Habit habit;
     private String thumbnail;
+    private Map<String, Feature> features;
 
 
     public Plant(String code, String coords){
@@ -35,10 +38,16 @@ public class Plant {
         this.coords = new ArrayList<Pair<Float,Float>>();
         this.addNewLocation(coords);
         this.thumbnail = "";
+        //this.features = new HashMap<String, Feature>();
+        //PlantMap.getInstance().getPlantsFeaturesMaps().put(this.code, this.features);
     }
 
     public Habit getHabit(){
         return this.habit;
+    }
+
+    public Map<String, Feature> getFeatures(){
+        return this.features;
     }
 
     public Plant(String code, JSONArray coords){
@@ -222,6 +231,7 @@ public class Plant {
             System.out.println("Failure to extract features from JSON");
         }
 
+        //PlantMap.getInstance().getPlantsFeaturesMaps().put(this.code, this.features);
 
 
     }
@@ -242,7 +252,8 @@ public class Plant {
                 }
                 images.add(image);
             }
-            this.leaves = new Feature(images, json.get("description").toString());
+            this.leaves = new Feature(images, json.get("description").toString(), "Leaves");
+            this.features.put("leaves", this.leaves);
         }
         catch (Exception e){}
     }
@@ -257,7 +268,8 @@ public class Plant {
                 }
                 images.add(image);
             }
-            this.bark = new Feature(images, json.get("description").toString());
+            this.bark = new Feature(images, json.get("description").toString(), "Bark");
+            this.features.put("bark", this.bark);
         }
         catch (Exception e){}
     }
@@ -272,7 +284,8 @@ public class Plant {
                 }
                 images.add(image);
             }
-            this.culture = new Feature(images, json.get("description").toString());
+            this.culture = new Feature(images, json.get("description").toString(), "Culture");
+            this.features.put("culture", this.culture);
         }
         catch (Exception e){}
     }
@@ -287,7 +300,8 @@ public class Plant {
                 }
                 images.add(image);
             }
-            this.stems = new Feature(images, json.get("description").toString());
+            this.stems = new Feature(images, json.get("description").toString(), "Stems");
+            this.features.put("stems", this.stems);
         }
         catch (Exception e){}
     }
@@ -302,7 +316,8 @@ public class Plant {
                 }
                 images.add(image);
             }
-            this.fruits = new Feature(images, json.get("description").toString());
+            this.fruits = new Feature(images, json.get("description").toString(), "Fruits");
+            this.features.put("fruits", this.fruits);
         }
         catch (Exception e){}
     }
@@ -317,7 +332,8 @@ public class Plant {
                 }
                 images.add(image);
             }
-            this.buds = new Feature(images, json.get("description").toString());
+            this.buds = new Feature(images, json.get("description").toString(), "Buds");
+            this.features.put("buds", this.buds);
         }
         catch (Exception e){}
     }
@@ -332,7 +348,8 @@ public class Plant {
                 }
                 images.add(image);
             }
-            this.fallcolor = new Feature(images, json.get("description").toString());
+            this.fallcolor = new Feature(images, json.get("description").toString(), "Fall Color");
+            this.features.put("fallColor", this.fallcolor);
         }
         catch (Exception e){}
     }
@@ -347,7 +364,8 @@ public class Plant {
                 }
                 images.add(image);
             }
-            this.flowers = new Feature(images, json.get("description").toString());
+            this.flowers = new Feature(images, json.get("description").toString(), "Flowers");
+            this.features.put("flowers", this.flowers);
         }
         catch (Exception e){}
     }
@@ -378,6 +396,8 @@ public class Plant {
             {
                 this.habit = new Habit(images, "","","","","","", "");
             }
+            //this.habit.setTitle("Habit");
+            //this.features.put("habit", new Feature(images, json.get("description").toString(), "Habit"));
 
 
         }
@@ -386,6 +406,21 @@ public class Plant {
             e.printStackTrace();
 
         }
+    }
+
+    public Map<String, Feature> getFeatureMap(){
+        Map<String, Feature> map = new HashMap<String, Feature>();
+        
+        map.put("leaves", new Feature(this.leaves.getImages(), this.leaves.getDescription(), "Leaves"));
+        map.put("fruits", new Feature(this.fruits.getImages(), this.fruits.getDescription(), "Fruits"));
+        map.put("flowers", new Feature(this.flowers.getImages(), this.flowers.getDescription(), "Flowers"));
+        map.put("fallColor", new Feature(this.fallcolor.getImages(), this.fallcolor.getDescription(), "Fall Color"));
+        map.put("culture", new Feature(this.culture.getImages(), this.culture.getDescription(), "Culture"));
+        map.put("buds", new Feature(this.buds.getImages(), this.buds.getDescription(), "Buds"));
+        map.put("stems", new Feature(this.stems.getImages(), this.stems.getDescription(), "Stems"));
+        map.put("habit", new Feature(this.habit.getImages(), this.habit.getDescription(), "Habit"));
+
+        return map;
     }
 
     public String getThumbnail() {

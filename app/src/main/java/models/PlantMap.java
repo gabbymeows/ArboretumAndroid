@@ -27,6 +27,7 @@ import adapters.GridViewAdapter;
 import plantsAPI.GetPlantInfo;
 import plantsAPI.GetPlantLocations;
 import plantsAPI.GetPlantNames;
+import seniorproject.arboretumapp.MainActivity;
 import seniorproject.arboretumapp.R;
 
 /**
@@ -43,11 +44,13 @@ public class PlantMap {
     private List<GridTile> nearTiles;
     private GridViewAdapter adapter;
     private HashMap<String, Integer> nearPlantsCount;
+    private HashMap<String, Map<String, Feature>> plantsFeaturesMaps;
 
 
 
     private PlantMap(){
         this.mPlants=new HashMap<String, Plant>();
+        this.nearPlantsCount = new HashMap<String, Integer>();
     }
 
     public static PlantMap getInstance(){
@@ -60,6 +63,12 @@ public class PlantMap {
     public HashMap<String, Plant> getPlantMap(){
 
         return mPlants;
+    }
+
+    public Map<String, Map<String, Feature>> getPlantsFeaturesMaps(){
+        if (this.plantsFeaturesMaps == null)
+            this.plantsFeaturesMaps = new HashMap<String, Map<String, Feature>>();
+        return this.plantsFeaturesMaps;
     }
 
     public void setFavoritePlantsList(Set<String> favs){
@@ -99,7 +108,10 @@ public class PlantMap {
     public List<String> getDisplayNamesList(){
         namesList = new ArrayList<String>();
         for( Plant p : mPlants.values()){
-            namesList.add(p.getSciName() + " (" + p.getComName() + ")");
+            if(!p.getComName().equals(""))
+                namesList.add(p.getSciName() + " (" + p.getComName() + ")");
+            else
+                namesList.add(p.getSciName());
         }
 
         return namesList;
@@ -114,11 +126,11 @@ public class PlantMap {
         return nameToCodeMap;
     }
 
-    public void updatePlantData(Context ctx){
+    public void updatePlantData()   {
 
         Log.v("gab", "update started PLANT");
         try {
-
+            this.mPlants = new HashMap<String, Plant>();
             String a = new GetPlantLocations().execute().get();
             JSONObject jsonObj = new JSONObject(a);
             JSONObject names = jsonObj.getJSONObject("data");
@@ -145,7 +157,7 @@ public class PlantMap {
             e.printStackTrace();
         }
 
-        getInstance().writeToFile(getInstance().getJSON(),ctx );
+        getInstance().writeToFile(getInstance().getJSON(), MainActivity.getMainContext() );
 
         Log.v("gab", "update finished PLANT");
     }
@@ -191,11 +203,11 @@ public class PlantMap {
         return file.exists();
     }
 
-    public void populatePlantMap(Context ctx){
+    public void populatePlantMap(){
 
         if (!getInstance().cacheExists()){
 
-            getInstance().updatePlantData(ctx);
+            getInstance().updatePlantData();
         }
         else{
             getInstance().readPlantDataFromFile();
@@ -204,11 +216,11 @@ public class PlantMap {
 
     }
 
-    public void updateData(Context ctx){
-        getInstance().updatePlantData(ctx);
+    public void updateData(){
+        getInstance().updatePlantData();
     }
 
-    private void readPlantDataFromFile(){
+    public void readPlantDataFromFile(){
         System.out.println("Reading Plant Data From File");
         String result = "";
         try {

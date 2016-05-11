@@ -1,44 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     android:id="@+id/your_dialog_root_element"
+    android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
 
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_margin="5dp"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:id="@+id/closeButton"
+            android:background="@drawable/back_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Set Radius"
+            android:id="@+id/radiusTitle"
+            android:layout_toRightOf="@+id/closeButton"
+            android:layout_centerVertical="true"
+            android:layout_alignTop="@+id/closeButton"
+            android:layout_alignParentTop="false" />
+
         <TextView
             android:id="@+id/RADIUStextViewProgressID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="Range 15ft"
-            android:textAppearance="?android:attr/textAppearanceLarge" >
+            android:layout_alignLeft="@+id/radiusTitle"
+            android:text="Radius: 75ft"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_below="@+id/closeButton">
         </TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false">
+
+
+
+
+
+
 
         <SeekBar
-            android:id="@+id/RADIUSseekBarID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+                android:id="@+id/RADIUSseekBarID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp">
+            </SeekBar>
 
-            android:layout_marginTop="26dp"
-            android:max="4" >
-        </SeekBar>
+    <!--    <TextView
+                android:id="@+id/RADIUSinitialvaluetextID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+                android:layout_below="@+id/RADIUSseekBarID"
+                android:text="15ft" >
+            </TextView>
 
         <TextView
-            android:id="@+id/RADIUSinitialvaluetextID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/RADIUSseekBarID"
-            android:text="15ft" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/PRICEinitialvaluetextID2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/RADIUSseekBarID"
-            android:text="200ft" />
+                android:id="@+id/PRICEinitialvaluetextID2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+                android:layout_below="@+id/RADIUSseekBarID"
+                android:text="200ft" />
+                -->
     </RelativeLayout>
+
+</LinearLayout>

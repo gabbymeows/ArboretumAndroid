@@ -7,7 +7,8 @@
         android:orderInCategory="100"
         android:title="Update Database"
         app:showAsAction="never" />
-    <item
+
+   <!-- <item
         android:id="@+id/update_gridview"
         android:orderInCategory="100"
         android:title="Test Sample Coordinates"
@@ -44,10 +45,11 @@
         android:orderInCategory="100"
         android:title="200 ft"
         app:showAsAction="never" />
+        -->
     <item
         android:id="@+id/seekbar"
         android:orderInCategory="100"
-        android:title="Seekbar"
+        android:title="Set Search Radius"
         app:showAsAction="never" />
 <!---
    <item

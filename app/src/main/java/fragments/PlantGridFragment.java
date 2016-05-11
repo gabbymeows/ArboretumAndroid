@@ -131,7 +131,7 @@ public class PlantGridFragment extends Fragment {
             GridTile tileClicked = ((GridTile) ((parent.getAdapter()).getItem(position)));
             dialog = PlantDetails.getDialog(gridView, tileClicked.getPlantCode(), parent.getContext(), parent.getRootView());
             dialog.show();
-
+            Log.v("asdf", "num instances = " + PlantMap.getInstance().getPlantCount(tileClicked.getPlantCode()));
             ((Button)dialog.findViewById(R.id.closeButton)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
