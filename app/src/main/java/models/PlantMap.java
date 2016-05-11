@@ -43,6 +43,7 @@ public class PlantMap {
     private List<GridTile> nearTiles;
     private GridViewAdapter adapter;
     private HashMap<String, Integer> nearPlantsCount;
+    private HashMap<String, Map<String, Feature>> plantsFeaturesMaps;
 
 
 
@@ -61,6 +62,12 @@ public class PlantMap {
     public HashMap<String, Plant> getPlantMap(){
 
         return mPlants;
+    }
+
+    public Map<String, Map<String, Feature>> getPlantsFeaturesMaps(){
+        if (this.plantsFeaturesMaps == null)
+            this.plantsFeaturesMaps = new HashMap<String, Map<String, Feature>>();
+        return this.plantsFeaturesMaps;
     }
 
     public void setFavoritePlantsList(Set<String> favs){

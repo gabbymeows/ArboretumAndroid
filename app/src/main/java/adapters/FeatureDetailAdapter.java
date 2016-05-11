@@ -1,8 +1,10 @@
 package adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +47,11 @@ public class FeatureDetailAdapter extends ArrayAdapter<Feature> {
         ftTitle.setText(feature.getTitle());
 
         if (!feature.getImage(0).equals("")) {
-            Picasso.with(parent.getContext()).load(feature.getImage(0)).into((ImageView) customView.findViewById(R.id.ft_image));
+            Picasso.with(parent.getContext()).load(feature.getImage(0)).into(ftImage);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                ftImage.setForegroundGravity(Gravity.CENTER);
+            }
+
         }
 
         if (!(feature.getDescription().equals("null") || feature.getDescription().equals(""))){
@@ -56,7 +62,7 @@ public class FeatureDetailAdapter extends ArrayAdapter<Feature> {
 
         }
         else
-            ftText.setText(" ");
+            ftText.setText("Only an image is available as of now.");
 
         return customView;
     }

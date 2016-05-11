@@ -4,7 +4,9 @@ import android.graphics.Bitmap;
 import android.media.Image;
 import android.widget.ImageView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by dquea on 4/5/2016.
@@ -26,6 +28,10 @@ public class Feature {
 
     public void setImage(Bitmap image){
         this.image = image;
+    }
+
+    public ArrayList<String> getImages(){
+        return this.images;
     }
 
     public Bitmap getImage(){

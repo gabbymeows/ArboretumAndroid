@@ -29,6 +29,7 @@ import seniorproject.arboretumapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -114,8 +115,8 @@ public class PlantDetails {
         LinearLayout headerItem = (LinearLayout) layoutInflater.inflate(R.layout.listview_header_item, null, false );
         ((ListView) dialog.findViewById(R.id.ftListView)).addHeaderView(headerItem);
 
-        ((TextView) headerItem.findViewById(R.id.About)).setText("About");
-        ((TextView) headerItem.findViewById(R.id.DescriptionMainTitle)).setText("Description");
+        //((TextView) headerItem.findViewById(R.id.About)).setText("About");
+        //((TextView) headerItem.findViewById(R.id.DescriptionMainTitle)).setText("Description");
 
 
         String plantCount = "";
@@ -138,7 +139,7 @@ public class PlantDetails {
 
 
         if(!plant.getHabit().getImage(0).equals("")) {
-            //Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView) dialog.findViewById(R.id.habitimage));
+            Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView) dialog.findViewById(R.id.habitImage));
             Picasso.with(context).load(plant.getHabit().getImage(0)).into((ImageView) headerItem.findViewById(R.id.largePlantImageView));
         }
         if(!plant.getStems().getImage(0).equals("")){
@@ -167,11 +168,23 @@ public class PlantDetails {
 //            Picasso.with(context).load(plant.getFallcolor().getImage(0)).into((ImageView)dialog.findViewById(R.id.fallimage));
 
         ArrayList<Feature> features = new ArrayList<Feature>();
-        Map<String, Feature> fts = plant.getFeatures();
-        String[] ftKeys = {"habit", "leaves", "buds", "stems", "flowers", "fruits", "fallColor", "bark", "culture"};
+
+        Map<String, Feature> map = new HashMap<String, Feature>();
+
+        map.put("leaves", new Feature(plant.getLeaves().getImages(), plant.getLeaves().getDescription(), "Leaves"));
+        map.put("fruits", new Feature(plant.getFruits().getImages(), plant.getFruits().getDescription(), "Fruits"));
+        map.put("flowers", new Feature(plant.getFlowers().getImages(), plant.getFlowers().getDescription(), "Flowers"));
+        map.put("fallColor", new Feature(plant.getFallcolor().getImages(), plant.getFallcolor().getDescription(), "Fall Color"));
+        map.put("culture", new Feature(plant.getCulture().getImages(), plant.getCulture().getDescription(), "Culture"));
+        map.put("buds", new Feature(plant.getBuds().getImages(), plant.getBuds().getDescription(), "Buds"));
+        map.put("bark", new Feature(plant.getBark().getImages(), plant.getBark().getDescription(), "Bark"));
+        map.put("stems", new Feature(plant.getStems().getImages(), plant.getStems().getDescription(), "Stems"));
+        map.put("habit", new Feature(plant.getHabit().getImages(), plant.getHabit().getDescription(), "Habit"));
+
+        String[] ftKeys = { "leaves", "buds", "stems", "flowers", "fruits", "fallColor", "bark", "culture"};
         for( String key : ftKeys){
             Log.v("gab", "key is "+key);
-            Feature ft = fts.get(key);
+            Feature ft = map.get(key);
             if (!((ft.getDescription().equals("null") || ft.getDescription().equals("")) && ft.getImage(0).equals(""))){
                 features.add(ft);
             }

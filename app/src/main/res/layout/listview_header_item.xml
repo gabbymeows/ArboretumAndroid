@@ -27,17 +27,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/About" />
+        android:text="Habit"
+        android:id="@+id/About"
+        android:layout_marginTop="10dp" />
 
-    <TextView
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/DescriptionMainTitle" />
 
     <TextView
         android:layout_marginRight="15dp"
@@ -46,7 +39,15 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text=""
-        android:id="@+id/descriptionmain" />
+        android:id="@+id/descriptionmain"
+        android:layout_marginTop="15dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/habitImage"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp" />
 
     <TextView
         android:layout_marginRight="15dp"
@@ -55,7 +56,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text=""
-        android:id="@+id/color" />
+        android:id="@+id/color"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_marginRight="15dp"

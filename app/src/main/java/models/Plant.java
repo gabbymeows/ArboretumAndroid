@@ -38,7 +38,8 @@ public class Plant {
         this.coords = new ArrayList<Pair<Float,Float>>();
         this.addNewLocation(coords);
         this.thumbnail = "";
-        this.features = new HashMap<String, Feature>();
+        //this.features = new HashMap<String, Feature>();
+        //PlantMap.getInstance().getPlantsFeaturesMaps().put(this.code, this.features);
     }
 
     public Habit getHabit(){
@@ -230,6 +231,7 @@ public class Plant {
             System.out.println("Failure to extract features from JSON");
         }
 
+        //PlantMap.getInstance().getPlantsFeaturesMaps().put(this.code, this.features);
 
 
     }
@@ -394,8 +396,8 @@ public class Plant {
             {
                 this.habit = new Habit(images, "","","","","","", "");
             }
-            this.habit.setTitle("Habit");
-            this.features.put("habit", this.habit);
+            //this.habit.setTitle("Habit");
+            //this.features.put("habit", new Feature(images, json.get("description").toString(), "Habit"));
 
 
         }
@@ -404,6 +406,21 @@ public class Plant {
             e.printStackTrace();
 
         }
+    }
+
+    public Map<String, Feature> getFeatureMap(){
+        Map<String, Feature> map = new HashMap<String, Feature>();
+        
+        map.put("leaves", new Feature(this.leaves.getImages(), this.leaves.getDescription(), "Leaves"));
+        map.put("fruits", new Feature(this.fruits.getImages(), this.fruits.getDescription(), "Fruits"));
+        map.put("flowers", new Feature(this.flowers.getImages(), this.flowers.getDescription(), "Flowers"));
+        map.put("fallColor", new Feature(this.fallcolor.getImages(), this.fallcolor.getDescription(), "Fall Color"));
+        map.put("culture", new Feature(this.culture.getImages(), this.culture.getDescription(), "Culture"));
+        map.put("buds", new Feature(this.buds.getImages(), this.buds.getDescription(), "Buds"));
+        map.put("stems", new Feature(this.stems.getImages(), this.stems.getDescription(), "Stems"));
+        map.put("habit", new Feature(this.habit.getImages(), this.habit.getDescription(), "Habit"));
+
+        return map;
     }
 
     public String getThumbnail() {
